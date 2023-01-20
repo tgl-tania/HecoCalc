@@ -1,0 +1,33 @@
+.Nav {
+    height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	width: 100%;
+    background: var(--white);
+}
+
+.NavContainer {
+    display: flex;
+	justify-content: start;
+	height: 60px;
+}
+
+.NavLogo {
+    color: #fff;
+	justify-self: flex-start;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	z-index: 50;
+    width: auto;
+}
+
+.NavIcon {
+    width: 140px;
+    margin: 5px;
+}

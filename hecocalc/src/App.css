@@ -1,0 +1,31 @@
+:root {
+  --primary: #16214C;
+  --secondary: #273362;
+  --dark: #373e47;
+  --light: #9a9a9a;
+  --white: #f7f7f7;
+
+  --icons : #FF6633;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /* font-family: 'Encode Sans Expanded',
+  sans-serif; */
+  font-family: 'Monserrat',
+  sans-serif; 
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
