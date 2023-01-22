@@ -5,7 +5,7 @@ import '../css/navbar.css';
 export default function Navbar() {
 
  // to change burger classes
- const setMenuBarClass = useState("BurgerBar unclicked")
+ const setMenuBarClass = useState("MenuBar unclicked")
  const setMenuClass = useState("DropdownMenu hidden")
  const [isMenuClicked, setIsMenuClicked] = useState(false)
 
@@ -39,7 +39,7 @@ export default function Navbar() {
           <div className='NavItem'>
             <div className='NavLink'>
               Inputs
-              {/* <i className='fas fa-caret-right' /> */}
+              <i className='fas fa-angle-right' />
             </div>
           </div>
           <div className='NavItem'>
@@ -50,7 +50,7 @@ export default function Navbar() {
           <div className='NavItem'>
             <div className='NavLink'>
               Model
-              {/* <i className='fas fa-caret-right' /> */}
+              <i className='fas fa-angle-right' />
             </div>
           </div>
         </div>
@@ -76,12 +76,14 @@ export default function Navbar() {
         <div className='DropdownMenuList'>
           <div className='DropdownMenuItem'>
             Inputs
+            <i className='fas fa-angle-right' />
           </div>
           <div className='DropdownMenuItem'>
             Results
           </div>
           <div className='DropdownMenuItem'>
             Model
+            <i className='fas fa-angle-right' />
           </div>
           <div className='DropdownMenuItem'>
           
