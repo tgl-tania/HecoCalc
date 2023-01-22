@@ -1,11 +1,12 @@
 :root {
   --primary: #16214C;
   --secondary: #273362;
-  --dark: #373e47;
+  /* --dark: #4c4c4c; */
+  --dark: #797c7f;
   --light: #9a9a9a;
   --white: #f7f7f7;
 
-  --icons : #FF6633;
+  --icons : #fb9118;
 }
 
 html {
