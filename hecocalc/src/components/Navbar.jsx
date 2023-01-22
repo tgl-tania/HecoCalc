@@ -5,18 +5,18 @@ import '../css/navbar.css';
 export default function Navbar() {
 
  // to change burger classes
- const setBurgerClass = useState("BurgerBar unclicked")
+ const setMenuBarClass = useState("BurgerBar unclicked")
  const setMenuClass = useState("DropdownMenu hidden")
  const [isMenuClicked, setIsMenuClicked] = useState(false)
 
  // toggle burger DropdownMenu change
  const updateMenu = () => {
    if(!isMenuClicked) {
-     setBurgerClass('BurgerBar clicked')
+     setMenuBarClass('MenuBar clicked')
      setMenuClass('DropdownMenu visible')
    }
    else {
-     setBurgerClass('BurgerBar unclicked')
+     setMenuBarClass('MenuBar unclicked')
      setMenuClass('DropdownMenu hidden')
    }
  }
@@ -88,7 +88,7 @@ export default function Navbar() {
             Model
           </div>
           <div className='DropdownMenuItem'>
-            Team-based Learning
+            Buttons Container Here
           </div>
         </div>
      </div>
