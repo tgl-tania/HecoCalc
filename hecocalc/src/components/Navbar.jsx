@@ -34,10 +34,6 @@ export default function Navbar() {
           {(isMenuClicked?<i className='fas fa-xmark'/>:<i className='fas fa-bars-staggered'/>)}
         </div>
 
-        {/* <div className='MobileIcon'>
-         <i className='fas fa-bars-staggered'/>
-        </div> */}
-
         {/* This div holds all the items in the navbar menu */}
         <div className='NavMenu'>
           <div className='NavItem'>
@@ -62,14 +58,14 @@ export default function Navbar() {
         {/* This is the div that contains the the buttons on the navbar */}
         <div className='NavBtnContainer'>
           <div className='NavBtn'>
-            <div className='NavBtnLink'>
+            <button className='NavBtnLink'>
               Signup
-            </div>
+            </button>
           </div>
           <div className='NavBtn'>
-            <div className='NavBtnLink'>
+            <button className='NavBtnLink'>
               Login
-            </div>
+            </button>
           </div>
         </div>
 
@@ -88,7 +84,7 @@ export default function Navbar() {
             Model
           </div>
           <div className='DropdownMenuItem'>
-            Buttons Container Here
+          
           </div>
         </div>
      </div>
