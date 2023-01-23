@@ -170,6 +170,26 @@
     gap: 7px;
 }
 
+.SubDropdownMenu {
+    position: absolute;
+    left: auto;
+    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
+      0 4px 6px -2px rgba(71, 63, 79, 0.16);
+    font-size: 0.875rem;
+    z-index: 9999;
+    /*min-width: 10rem;  of the dropdown menu if deleted */ 
+    /*padding: 1rem 0; padding from the top to first item*/ 
+    list-style: none;
+    background-color: rgb(50, 95, 155);
+    border-radius: 0.5rem;
+    display: none;
+    margin-top: 5px;
+}
+
+.SubDropdownMenu.show {
+    display: block;
+}
+
 /* Hover Effects */
 
 .NavBtnLink:hover,

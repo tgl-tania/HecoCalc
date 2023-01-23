@@ -1,15 +1,14 @@
 import React, {useState } from "react";
+
 import '../css/navbar.css';
 
 
 export default function Navbar() {
 
- // to change burger classes
+ // toggle mobile icon DropdownMenu change
  const setMenuBarClass = useState("MenuBar unclicked")
  const setMenuClass = useState("DropdownMenu hidden")
  const [isMenuClicked, setIsMenuClicked] = useState(false)
-
- // toggle burger DropdownMenu change
  const updateMenu = () => {
    if(!isMenuClicked) {
      setMenuBarClass('MenuBar clicked')
@@ -20,6 +19,36 @@ export default function Navbar() {
      setMenuClass('DropdownMenu hidden')
    }
  }
+
+//  Sub Menu - Input (Nav Item)
+const setMenuInputClass = useState("MenuInput unclicked")
+const setSubMenu1Class = useState("SubDropdownMenu1 hidden")
+const [isSubMenu1Clicked, setIsSubMenu1C1licked] = useState(false)
+const updateInputMenu = () => {
+  if(!isSubMenu1Clicked) {
+    setMenuInputClass('MenuInput clicked')
+    setSubMenu1Class('SubDropdownMenu1 visible')
+  }
+  else {
+    setMenuBarClass('MenuBar unclicked')
+    setMenuClass('DropdownMenu hidden')
+  }
+}
+
+//  Sub Menu - Model (Nav Item)
+const setMenuModelClass = useState("MenuModel unclicked")
+const setSubMenuClass2 = useState("SubDropdownMenu2 hidden")
+const [isSubMenu2Clicked, setIsSubMenu2C1licked] = useState(false)
+const updateModelMenu = () => {
+  if(!isSubMenu2Clicked) {
+    setMenuModelClass('MenuInput clicked')
+    setSubMenuClass2('SubDropdownMenu1 visible')
+  }
+  else {
+    setMenuBarClass('MenuBar unclicked')
+    setSubMenuClass2('DropdownMenu hidden')
+  }
+}
 
   return (
     <>
@@ -37,9 +66,9 @@ export default function Navbar() {
         {/* This div holds all the items in the navbar menu */}
         <div className='NavMenu'>
           <div className='NavItem'>
-            <div className='NavLink'>
+            <div className='NavLink' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
               Inputs
-              <i className='fas fa-angle-right' />
+              {(isSubMenu1Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
             </div>
           </div>
           <div className='NavItem'>
@@ -47,10 +76,10 @@ export default function Navbar() {
               Results
             </div>
           </div>
-          <div className='NavItem'>
-            <div className='NavLink'>
+          <div className='NavItem' >
+            <div className='NavLink' onClick={() => updateModelMenu(setIsSubMenu2C1licked(!isSubMenu2Clicked))}>
               Model
-              <i className='fas fa-angle-right' />
+              {(isSubMenu2Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
             </div>
           </div>
         </div>
