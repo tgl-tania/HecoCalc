@@ -1,7 +1,5 @@
 import React, {useState } from "react";
-
 import '../css/navbar.css';
-
 
 export default function Navbar() {
 
@@ -9,6 +7,7 @@ export default function Navbar() {
  const setMenuBarClass = useState("MenuBar unclicked")
  const setMenuClass = useState("DropdownMenu hidden")
  const [isMenuClicked, setIsMenuClicked] = useState(false)
+
  const updateMenu = () => {
    if(!isMenuClicked) {
      setMenuBarClass('MenuBar clicked')
@@ -24,6 +23,7 @@ export default function Navbar() {
 const setMenuInputClass = useState("MenuInput unclicked")
 const setSubMenu1Class = useState("SubDropdownMenu1 hidden")
 const [isSubMenu1Clicked, setIsSubMenu1C1licked] = useState(false)
+
 const updateInputMenu = () => {
   if(!isSubMenu1Clicked) {
     setMenuInputClass('MenuInput clicked')
