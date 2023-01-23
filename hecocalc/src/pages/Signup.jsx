@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
 
-function Login() {
+function Signin() {
   return (
     <>
       <Navbar/>
@@ -9,4 +9,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signin

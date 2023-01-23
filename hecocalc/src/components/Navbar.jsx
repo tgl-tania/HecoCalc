@@ -1,7 +1,43 @@
 import React, {useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import '../css/navbar.css';
 
 export default function Navbar() {
+  // Navigating to other pages (react-router-dom)
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
+
+  const navigateToSignup = () => {
+    navigate('/signup');
+  };
+
+  const navigateToLogin = () => {
+    navigate('/login');
+  };
+
+  const navigateToInputParameters = () => {
+    navigate('/input-parameters');
+  };
+
+  const navigateToCostEngineAnalysis = () => {
+    navigate('/cost-engine-analysis');
+  };
+
+  const navigateToResults = () => {
+    navigate('/results');
+  };
+
+  const navigateToTreeDiagram = () => {
+    navigate('/tree-diagram');
+  };
+
+  const navigateToSimulations = () => {
+    navigate('/simulations');
+  };
 
  // toggle mobile icon DropdownMenu change
  const setMenuBarClass = useState("MenuBar unclicked")
@@ -56,7 +92,7 @@ const updateModelMenu = () => {
       <div className='NavContainer'>
         {/* This is the div that contains the navbar logo */}
         <div className='NavLogo'>
-            <img className='NavIcon' src='./assets/hecologo.png' />
+            <img className='NavIcon' src='./assets/hecologo.png' onClick={navigateToHome}/>
         </div>
 
         <div className='MobileIcon' onClick={() => updateMenu(setIsMenuClicked(!isMenuClicked))}>
@@ -64,6 +100,7 @@ const updateModelMenu = () => {
         </div>
 
         {/* This div holds all the items in the navbar menu */}
+        
         <div className='NavMenu'>
           <div className='NavItem'>
             <div className='NavLink' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
@@ -72,7 +109,7 @@ const updateModelMenu = () => {
             </div>
           </div>
           <div className='NavItem'>
-            <div className='NavLink'>
+            <div className='NavLink' onClick={navigateToResults}>
               Results
             </div>
           </div>
@@ -87,12 +124,12 @@ const updateModelMenu = () => {
         {/* This is the div that contains the the buttons on the navbar */}
         <div className='NavBtnContainer'>
           <div className='NavBtn'>
-            <button className='NavBtnLink'>
+            <button className='NavBtnLink' onClick={navigateToSignup}>
               Signup
             </button>
           </div>
           <div className='NavBtn'>
-            <button className='NavBtnLink'>
+            <button className='NavBtnLink' onClick={navigateToLogin}>
               Login
             </button>
           </div>
@@ -115,7 +152,7 @@ const updateModelMenu = () => {
             <i className='fas fa-angle-right' />
           </div>
           <div className='DropdownMenuItem'>
-          
+            
           </div>
         </div>
      </div>
