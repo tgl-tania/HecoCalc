@@ -13,28 +13,30 @@
 }
 
 .NavContainer {
-	z-index: 1;
-	display: flex;
+    z-index: 1;
+    display: flex;
     justify-content: space-between;
     height: 60px;
     z-index: 1;
     width: 100%;
     padding: 0 24px;
     max-width: 1100px;
+    position: relative;
 }
 
 .NavLogo {
     color: #fff;
-	justify-self: flex-start;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	z-index: 50;
+    justify-self: flex-start;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    z-index: 50;
     width: auto;
 }
 
 .NavLogo img {
-	padding: 15px;
+    padding: 15px;
+    /* height: 60px; */
 }
 
 .NavIcon {
@@ -43,7 +45,7 @@
 }
 
 .NavMenu {
-	display: flex;
+    display: flex;
     align-items: center;
     list-style: none;
     text-align: center;
@@ -51,30 +53,32 @@
 }
 
 .NavItem {
-	height: 80px;
-	cursor: pointer;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .NavLink {
-	color: var(--dark);
-	letter-spacing: 1px;
-	font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 1px;
+    font-weight: 500;
     display: flex;
-	flex-direction: row;
+    flex-direction: row;
     align-items: center;
     text-decoration: none;
     padding: 0 1rem;
     height: 100%;
     cursor: pointer;
-    gap: 7px;
+    gap: 2px;
 }
 
 .NavIcon {
-	color: var(--dark);
+    color: var(--dark);
 }
 
 .MobileIcon {
-	display: none;
+    display: none;
 }
 
 .fas.fa-xmark {
@@ -91,24 +95,24 @@
 }
 
 .NavBtnContainer {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .NavBtn {
-	display: flex;
+    display: flex;
     align-items: center;
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 .NavBtnLink {
-	border-radius: 15px;
+    border-radius: 15px;
     background: var(--icons);
     white-space: now-wrap;
     padding: 10px 22px;
     color: #636567;
-	letter-spacing: 1px;
-	font-weight: 500;
+    letter-spacing: 1px;
+    font-weight: 500;
     font-size: 16px;
     outline: none;
     border: none;
@@ -171,36 +175,36 @@
 }
 
 .SubDropdownMenu {
-    position: absolute;
-    left: auto;
-    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-      0 4px 6px -2px rgba(71, 63, 79, 0.16);
-    font-size: 0.875rem;
-    z-index: 9999;
-    /*min-width: 10rem;  of the dropdown menu if deleted */ 
-    /*padding: 1rem 0; padding from the top to first item*/ 
-    list-style: none;
-    background-color: rgb(50, 95, 155);
-    border-radius: 0.5rem;
-    display: none;
-    margin-top: 5px;
+    display: block;
 }
 
 .SubDropdownMenuHidden {
     position: absolute;
     left: auto;
-    box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
-      0 4px 6px -2px rgba(71, 63, 79, 0.16);
-    font-size: 0.875rem;
     z-index: 9999;
-    /*min-width: 10rem;  of the dropdown menu if deleted */ 
-    /*padding: 1rem 0; padding from the top to first item*/ 
     list-style: none;
-    background-color: rgb(166, 167, 169);
+    /* background-color: rgb(50, 95, 155); */
+    background-color: black;
     border-radius: 0.5rem;
     display: none;
     margin-top: 5px;
-    display: none;
+}
+
+.SubDropdownMenuItem {
+    /* margin-top: 70px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    list-style: none;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+    color: var(--dark);
+    cursor: pointer;
+    gap: 7px;
 }
 
 .SubDropdownMenu.show {
@@ -216,7 +220,7 @@
 }
 
 .DropdownMenuItem:hover {
-	color:var(--icons);
+    color:var(--icons);
     transition: all 0.3s ease-in-out;
 }
 
@@ -227,12 +231,12 @@
 
 /* Media Queries */
 @media (max-width: 800px) {
-	.NavMenu {
-		display: none;
-	}
+    .NavMenu {
+        display: none;
+    }
 
-	.MobileIcon {
-		display: block;
+    .MobileIcon {
+        display: block;
         position: absolute;
         top: 0;
         right: 0;
@@ -240,14 +244,14 @@
         font-size: 1.8rem;
         cursor: pointer;
         color: var(--dark);
-	}
+    }
 
-	.NavBtnContainer {
-		display: none;
-	}
+    .NavBtnContainer {
+        display: none;
+    }
 
-	.DropdownMenu {
-		display:flex;
+    .DropdownMenu {
+        display:flex;
         transition: 0.5s ease-in-out;
-	}
+    }
 }

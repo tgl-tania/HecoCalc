@@ -1,5 +1,6 @@
-import React, {useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
+import { NavMenuItems } from "../data/NavMenuItems";
 
 import '../css/navbar.css';
 
@@ -9,10 +10,6 @@ export default function Navbar() {
 
   const navigateToHome = () => {
     navigate('/');
-  };
-
-  const navigateToSignup = () => {
-    navigate('/signup');
   };
 
   const navigateToLogin = () => {
@@ -100,12 +97,20 @@ const updateModelMenu = () => {
         </div>
 
         {/* This div holds all the items in the navbar menu */}
-        
+
         <div className='NavMenu'>
           <div className='NavItem'>
             <div className='NavLink' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
               Inputs
               {(isSubMenu1Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
+              {(isSubMenu1Clicked?<div className='SubDropdownMenu'>
+                <div className='SubDropdownMenuItem'>
+                    Input Parameters
+                 </div>
+                 <div className='SubDropdownMenuItem'>
+                    Cost Engine Analysis
+                 </div> 
+              </div>:<div className='SubDropdownMenuHidden'/>)}
             </div>
           </div>
           <div className='NavItem'>
@@ -122,34 +127,35 @@ const updateModelMenu = () => {
         </div>
 
         {/* This is the div that contains the the buttons on the navbar */}
-        <div className='NavBtnContainer'>
-          <div className='NavBtn'>
-            <button className='NavBtnLink' onClick={navigateToSignup}>
-              Signup
-            </button>
+          <div className='NavBtnContainer'>
+            <div className='NavBtn'>
+              <button className='NavBtnLink' onClick={navigateToLogin}>
+                Login
+              </button>
+            </div>
           </div>
-          <div className='NavBtn'>
-            <button className='NavBtnLink' onClick={navigateToLogin}>
-              Login
-            </button>
-          </div>
-        </div>
 
       </div>
-      
     </div>
+
+    <div className='SubDropdownMenu'>
+      <div className='SubDropdownMenuItem'>
+        Input Parameters
+      </div>
+    </div>
+
     <div className={(isMenuClicked?'DropdownMenu':'DropdownMenuHidden')}>
         <div className='DropdownMenuList'>
-          <div className='DropdownMenuItem'>
+          <div className='DropdownMenuItem' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
             Inputs
-            <i className='fas fa-angle-right' />
+            {(isSubMenu1Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
           </div>
-          <div className='DropdownMenuItem'>
+          <div className='DropdownMenuItem' onClick={navigateToResults}>
             Results
           </div>
-          <div className='DropdownMenuItem'>
+          <div className='DropdownMenuItem' onClick={() => updateModelMenu(setIsSubMenu2C1licked(!isSubMenu2Clicked))}>
             Model
-            <i className='fas fa-angle-right' />
+            {(isSubMenu2Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
           </div>
           <div className='DropdownMenuItem'>
             
