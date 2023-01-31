@@ -4,10 +4,9 @@ import {
 } from 'devextreme-react/chart';
 import data from '../tornadodata.json';
 
-// const format = scale => scale.tickFormat(null, '$');
-
 class Tornado extends React.Component {
 
+  //Defines the min and max of the axis
   visualRange = [0,3500]
 
   render() {
@@ -17,6 +16,8 @@ class Tornado extends React.Component {
       barGroupPadding={0.2} rotated={true} 
       palette="Harmony Light">
         <Title text="Tornado diagram (ICER)" />
+        {/* The tornado diagram is created as a bar range chart, 
+        the following takes the defined ranges from the json file */}
         <CommonSeriesSettings
           type="rangeBar"
           argumentField="yAxisLabel"
@@ -34,7 +35,6 @@ class Tornado extends React.Component {
         //Sets the axis range from 0,3500 (visualRange)
         defaultVisualRange={this.visualRange} 
         tickInterval={500}
-        // tickFormat={format}
         /> 
 
         <Tooltip
