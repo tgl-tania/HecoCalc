@@ -1,6 +1,6 @@
 import React from 'react'
 // import Tornado from '../components/TornadoDiagram';
-import ScatterPlot from '../components/common/ScatterPlot';
+import ScatterPlot from '../components/ScatterPlot';
 
 function Results() {
   return (
