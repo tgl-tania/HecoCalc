@@ -26,13 +26,13 @@ const data = LineChartData.map((item) => {
 export default function Linechart() {
   return (  <div style={{textAlign:'center',  minWidth: "400px"}}>
     {/*I have tested that the graph will not apprear properly unless it is atleast 400px wide, so the div I  will pass will be minimum 400px it can made large*/ }     
-    <ResponsiveContainer width="100%" aspect={2}>
+    {/* <ResponsiveContainer width="100%" aspect={2}> */}
       {/* The responsive container allows the graph to change when the screensize changes */}
       <LineChart
-        width={400}
+        width={600}
         height={400}
         data={data} // This is where we will pass the json file.
-        margin= {{ top: 10, right: 30, left: 30, bottom: 10 }}
+        margin= {{ top: 30, right: 20, left: 20, bottom: 10 }}
       >
         {/* All these below are componets of the line chart, imported from the recharts library */}
         <CartesianGrid strokeDasharray="0 0" /> {/* Adjust the graph grid apearance */}
@@ -49,7 +49,7 @@ export default function Linechart() {
 
         <Line type="monotone" dataKey="Digital" stroke="blue" strokeWidth={1.5}/>
       </LineChart>      
-    </ResponsiveContainer>
+    {/* </ResponsiveContainer> */}
     {/* The Line Below is for the lable of the x-axis, I tried to put a label on x axis component but it would stick to the axis and would not move no matter what I changed*/}
     <h3 style={{fontSize: '14px'}}>WTP (GBP)</h3> 
     </div>

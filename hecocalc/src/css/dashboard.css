@@ -1,0 +1,16 @@
+.dashboard{
+    display: flex;
+    flex-direction: column;
+  }
+  .LineAndScatter{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    
+  }
+  .TornadoDiagram{
+    margin: 25px;
+    display: flex;
+    width: "80%";
+  }
+  

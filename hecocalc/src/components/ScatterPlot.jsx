@@ -14,8 +14,8 @@ import data from '../json/scatter-data.json';
 export default function ScatterPlot() {
 
   return (
-    <>
-    <h1 style={{fontSize: '24px'}}>Scatter Plots </h1>
+    <div>
+    <h1 style={{fontSize: '24px',color: "#3333ff"}}>Scatter Plots </h1>
     <ScatterChart
       width={500}
       height={400}
@@ -39,6 +39,6 @@ export default function ScatterPlot() {
       <ReferenceLine x={0} stroke="black" strokeWidth={2} />
     </ScatterChart>
     <h3 style={{fontSize: '12px'}}>Incremental QALYs</h3>
-    </>
+    </div>
   );
 }
