@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Results from './pages/Results';
 
-import GraphsDashboard from './pages/GraphsDashboard'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/results' element={<Results />}/>
-          <Route path='/dashboard' element={<GraphsDashboard />}/>
+          <Route path='/dashboard' element={<Dashboard />}/>
       </Routes>
     </Router>
   );
