@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Chart, CommonSeriesSettings, Legend, SeriesTemplate, Animation, Title, ValueAxis, Tooltip
 } from 'devextreme-react/chart';
-import data from '../json/tornadodata.json';
+import data from '../json/tornado-data.json';
 
 class Tornado extends React.Component {
 

@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer  
 } from "recharts";
-import LineChartData from "../json/LineChartData.json" ; 
+import LineChartData from "../json/line-chart-data.json" ; 
 // Using right now to read Json files as discussed with chan, may need change it to fetch depending on how the backend is done. 
 
 // This Component was written by Shivank let me know if you have any questions.

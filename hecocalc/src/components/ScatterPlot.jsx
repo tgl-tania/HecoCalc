@@ -9,7 +9,7 @@ import {
   ReferenceLine,
   Legend,
 } from "recharts";
-import data from '../json/scatterdata.json';
+import data from '../json/scatter-data.json';
 
 export default function ScatterPlot() {
 
