@@ -26,7 +26,7 @@ const data = LineChartData.map((item) => {
 export default function Linechart() {
   return (  <div style={{textAlign:'center',  minWidth: "400px"}}>
     {/*I have tested that the graph will not apprear properly unless it is atleast 400px wide, so the div I  will pass will be minimum 400px it can made large*/ }     
-    {/* <ResponsiveContainer width="100%" aspect={2}> */}
+    <ResponsiveContainer width="100%" aspect={1}>
       {/* The responsive container allows the graph to change when the screensize changes */}
       <LineChart
         width={600}
@@ -49,7 +49,7 @@ export default function Linechart() {
 
         <Line type="monotone" dataKey="Digital" stroke="blue" strokeWidth={1.5}/>
       </LineChart>      
-    {/* </ResponsiveContainer> */}
+    </ResponsiveContainer>
     {/* The Line Below is for the lable of the x-axis, I tried to put a label on x axis component but it would stick to the axis and would not move no matter what I changed*/}
     <h3 style={{fontSize: '14px'}}>WTP (GBP)</h3> 
     </div>
