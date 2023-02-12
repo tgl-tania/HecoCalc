@@ -1,257 +1,43 @@
-.Nav {
-    z-index: 10;
-    background: var(--white);
-    box-shadow: 0 0.25px 2px 0 var(--light); 
+.header {
     width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    flex-flow: row nowrap;
-    align-items: center;
-    font-size: 1rem;
-    position: fixed;
-}
-
-.NavContainer {
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    height: 60px;
-    z-index: 1;
-    width: 100%;
-    padding: 0 24px;
-    max-width: 1100px;
-    position: relative;
-}
-
-.NavLogo {
-    color: #fff;
-    justify-self: flex-start;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    z-index: 50;
-    width: auto;
-}
-
-.NavLogo img {
-    padding: 15px;
-    /* height: 60px; */
-}
-
-.NavIcon {
-    width: 140px;
-    margin: 5px;
-}
-
-.NavMenu {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    text-align: center;
-    margin-right: -22px;
-}
-
-.NavItem {
-    height: 60px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-}
-
-.NavLink {
-    color: var(--dark);
-    letter-spacing: 1px;
-    font-weight: 500;
+    height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
-    cursor: pointer;
-    gap: 2px;
+  }
+
+.MainMenu{
+    color: rgb(17, 12, 13);
+    font-size: x-large;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    margin-left: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.NavIcon {
-    color: var(--dark);
-}
+.footer{
+    color: black;
 
-.MobileIcon {
-    display: none;
-}
+    /*  Use another css property to fix on bottom of the navbar*/
+    /* margin-top: 590px; */
 
-.fas.fa-xmark {
-    margin-right: 5px;
-    /* font-size: 28px; */
-    transform: rotate(-90deg);
-    transition: transform 1s ease-in-out;
-}
-
-.fas-fa-bars-staggered {
-    margin-right: 15px;
-    transform: rotate(-90deg);
-    transition: transform 1s ease-in-out;
-}
-
-.NavBtnContainer {
-    display: flex;
-    flex-direction: row;
-}
-
-.NavBtn {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.NavBtnLink {
-    border-radius: 15px;
-    background: var(--icons);
-    white-space: now-wrap;
-    padding: 10px 22px;
-    color: #636567;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.DropdownMenu{
-    position: relative;
-    background: var(--white);
-    box-shadow: 0 0.25px 2px 0 var(--light);
-    width: 100%;
-    height: 300px;
-    display: none;
-    justify-content: center;
-    flex-flow: row nowrap;
-    align-items: center;
-    font-size: 1rem;
+    overflow: hidden;
     position: fixed;
-    z-index: 6;
+    bottom: 0;
+    
 }
 
-.DropdownMenuHidden{
-    position: relative;
-    background: var(--secondary);
-    box-shadow: 0 0.25px 2px 0 var(--light);
-    width: 100%;
-    height: 300px;
-    display: none;
-    justify-content: center;
-    flex-flow: row nowrap;
-    align-items: center;
-    font-size: 1rem;
-    position: fixed;
-}
-
-.DropdownMenuList {
-    padding-top: 45px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 60px);
-    text-align: center;
-}
-
-.DropdownMenuItem {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-    list-style: none;
-    transition: 0.2s ease-in-out;
-    text-decoration: none;
-    color: var(--dark);
+.footer:hover {
     cursor: pointer;
-    gap: 7px;
 }
 
-.SubDropdownMenu {
-    display: block;
+.setting{
+    color: rgb(3, 3, 3);
+    margin-left: 20px;
+    margin-top: 0px;
+    width: 20px;
 }
 
-.SubDropdownMenuHidden {
-    position: absolute;
-    left: auto;
-    z-index: 9999;
-    list-style: none;
-    /* background-color: rgb(50, 95, 155); */
-    background-color: black;
-    border-radius: 0.5rem;
-    display: none;
-    margin-top: 5px;
-}
 
-.SubDropdownMenuItem {
-    /* margin-top: 70px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-    list-style: none;
-    transition: 0.2s ease-in-out;
-    text-decoration: none;
-    color: var(--dark);
-    cursor: pointer;
-    gap: 7px;
-}
 
-.SubDropdownMenu.show {
-    display: block;
-}
 
-/* Hover Effects */
-
-.NavBtnLink:hover,
-.NavBtnLink:focus {
-    color: #fff;
-    box-shadow: inset 6.5em 0 0 0 var(--dark);
-}
-
-.DropdownMenuItem:hover {
-    color:var(--icons);
-    transition: all 0.3s ease-in-out;
-}
-
-.MobileIcon i:hover{
-    color: var(--icons);
-    transition: 0.2s ease-in-out;
-}
-
-/* Media Queries */
-@media (max-width: 800px) {
-    .NavMenu {
-        display: none;
-    }
-
-    .MobileIcon {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 45%);
-        font-size: 1.8rem;
-        cursor: pointer;
-        color: var(--dark);
-    }
-
-    .NavBtnContainer {
-        display: none;
-    }
-
-    .DropdownMenu {
-        display:flex;
-        transition: 0.5s ease-in-out;
-    }
-}

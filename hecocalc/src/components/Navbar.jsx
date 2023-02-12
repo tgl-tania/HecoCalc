@@ -1,167 +1,70 @@
-import { useState, useEffect, useRef } from "react";
+import { Divider, ListItemIcon, ListItemText } from '@mui/material'
+import { Drawer, List, ListItem } from '@mui/material'
+import React, { useState } from 'react'
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
+import SettingsIcon from '@mui/icons-material/Settings';
+import "../css/navbar.css";
+import LogoutIcon from '@mui/icons-material/Logout';
+//import Settings from '@mui/icons-material/Settings';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { useNavigate } from 'react-router-dom';
-import { NavMenuItems } from "../data/NavMenuItems";
+//import Link from '@mui/material';
 
-import '../css/navbar.css';
+function Navbar() {
 
-export default function Navbar() {
-  // Navigating to other pages (react-router-dom)
-  const navigate = useNavigate();
+    const navigate=useNavigate();
 
-  const navigateToHome = () => {
-    navigate('/');
-  };
+    const navigateToLogin = () => {
+        navigate('/');
+    };
 
-  const navigateToLogin = () => {
-    navigate('/login');
-  };
+    const [open,setOpen] = useState(false);
 
-  const navigateToInputParameters = () => {
-    navigate('/input-parameters');
-  };
-
-  const navigateToCostEngineAnalysis = () => {
-    navigate('/cost-engine-analysis');
-  };
-
-  const navigateToResults = () => {
-    navigate('/results');
-  };
-
-  const navigateToTreeDiagram = () => {
-    navigate('/tree-diagram');
-  };
-
-  const navigateToSimulations = () => {
-    navigate('/simulations');
-  };
-
- // toggle mobile icon DropdownMenu change
- const setMenuBarClass = useState("MenuBar unclicked")
- const setMenuClass = useState("DropdownMenu hidden")
- const [isMenuClicked, setIsMenuClicked] = useState(false)
-
- const updateMenu = () => {
-   if(!isMenuClicked) {
-     setMenuBarClass('MenuBar clicked')
-     setMenuClass('DropdownMenu visible')
-   }
-   else {
-     setMenuBarClass('MenuBar unclicked')
-     setMenuClass('DropdownMenu hidden')
-   }
- }
-
-//  Sub Menu - Input (Nav Item)
-const setMenuInputClass = useState("MenuInput unclicked")
-const setSubMenu1Class = useState("SubDropdownMenu1 hidden")
-const [isSubMenu1Clicked, setIsSubMenu1C1licked] = useState(false)
-
-const updateInputMenu = () => {
-  if(!isSubMenu1Clicked) {
-    setMenuInputClass('MenuInput clicked')
-    setSubMenu1Class('SubDropdownMenu1 visible')
-  }
-  else {
-    setMenuBarClass('MenuBar unclicked')
-    setMenuClass('DropdownMenu hidden')
-  }
-}
-
-//  Sub Menu - Model (Nav Item)
-const setMenuModelClass = useState("MenuModel unclicked")
-const setSubMenuClass2 = useState("SubDropdownMenu2 hidden")
-const [isSubMenu2Clicked, setIsSubMenu2C1licked] = useState(false)
-const updateModelMenu = () => {
-  if(!isSubMenu2Clicked) {
-    setMenuModelClass('MenuInput clicked')
-    setSubMenuClass2('SubDropdownMenu1 visible')
-  }
-  else {
-    setMenuBarClass('MenuBar unclicked')
-    setSubMenuClass2('DropdownMenu hidden')
-  }
-}
+    const list = () => (
+        <div style={{width: 250}}> 
+        <List >
+            <div className='MainMenu'>Main Menu</div>
+            <Divider/>
+            {['Dashboard'].map((label,index) => (
+                <ListItem key={index}>
+                    <ListItemIcon><TaskAltIcon/></ListItemIcon>
+                        <ListItemText primary={label} />
+                </ListItem>
+            ))}
+            {['Snapshots'].map((label,index) => (
+                <ListItem key={index}>
+                    <ListItemIcon><CameraEnhanceIcon/></ListItemIcon>
+                        <ListItemText primary={label} />
+                </ListItem>
+            ))}
+            {['Settings'].map((label,index) => (
+                <ListItem key={index}>
+                    <ListItemIcon><SettingsIcon/></ListItemIcon>
+                        <ListItemText primary={label} />
+                </ListItem>
+            ))}
+            
+            <div className='footer'>
+              {['Log Out'].map((label,index) => (
+                  <ListItem key={index} onClick={navigateToLogin} >
+                      <ListItemIcon><LogoutIcon/></ListItemIcon>
+                          <ListItemText primary={label} />
+                  </ListItem>
+              ))}
+            </div>
+        </List>
+        </div>
+    )
 
   return (
-    <>
-    <div className='Nav'>
-      <div className='NavContainer'>
-        {/* This is the div that contains the navbar logo */}
-        <div className='NavLogo'>
-            <img className='NavIcon' src='./assets/hecologo.png' onClick={navigateToHome}/>
-        </div>
-
-        <div className='MobileIcon' onClick={() => updateMenu(setIsMenuClicked(!isMenuClicked))}>
-          {(isMenuClicked?<i className='fas fa-xmark'/>:<i className='fas fa-bars-staggered'/>)}
-        </div>
-
-        {/* This div holds all the items in the navbar menu */}
-
-        <div className='NavMenu'>
-          <div className='NavItem'>
-            <div className='NavLink' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
-              Inputs
-              {(isSubMenu1Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
-              {(isSubMenu1Clicked?<div className='SubDropdownMenu'>
-                <div className='SubDropdownMenuItem'>
-                    Input Parameters
-                 </div>
-                 <div className='SubDropdownMenuItem'>
-                    Cost Engine Analysis
-                 </div> 
-              </div>:<div className='SubDropdownMenuHidden'/>)}
-            </div>
-          </div>
-          <div className='NavItem'>
-            <div className='NavLink' onClick={navigateToResults}>
-              Results
-            </div>
-          </div>
-          <div className='NavItem' >
-            <div className='NavLink' onClick={() => updateModelMenu(setIsSubMenu2C1licked(!isSubMenu2Clicked))}>
-              Model
-              {(isSubMenu2Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
-            </div>
-          </div>
-        </div>
-
-        {/* This is the div that contains the the buttons on the navbar */}
-          <div className='NavBtnContainer'>
-            <div className='NavBtn'>
-              <button className='NavBtnLink' onClick={navigateToLogin}>
-                Login
-              </button>
-            </div>
-          </div>
-
-      </div>
+    <div className='header'>
+        <div className='setting' onClick={()=>setOpen(true)}><DensityMediumIcon/></div>
+        <Drawer open={open} anchor={'left'} onClose={()=>setOpen(false)}>
+            {list()}
+        </Drawer>
     </div>
-
-    <div className='SubDropdownMenu'>
-      <div className='SubDropdownMenuItem'>
-        Input Parameters
-      </div>
-    </div>
-
-    <div className={(isMenuClicked?'DropdownMenu':'DropdownMenuHidden')}>
-        <div className='DropdownMenuList'>
-          <div className='DropdownMenuItem' onClick={() => updateInputMenu(setIsSubMenu1C1licked(!isSubMenu1Clicked))}>
-            Inputs
-            {(isSubMenu1Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
-          </div>
-          <div className='DropdownMenuItem' onClick={navigateToResults}>
-            Results
-          </div>
-          <div className='DropdownMenuItem' onClick={() => updateModelMenu(setIsSubMenu2C1licked(!isSubMenu2Clicked))}>
-            Model
-            {(isSubMenu2Clicked?<i className='fas fa-angle-down'/>:<i className='fas fa-angle-right'/>)}
-          </div>
-          <div className='DropdownMenuItem'>
-            
-          </div>
-        </div>
-     </div>
-  </>
   )
 }
+
+export default Navbar
