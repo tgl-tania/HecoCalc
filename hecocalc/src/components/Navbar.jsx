@@ -13,58 +13,84 @@ import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
 
-    const navigate=useNavigate();
+    const [open, setOpen] = useState(false);
+
+    const [component, setComponent] = useState(false);
+
+    const openPage = () => {
+        setComponent(true);
+
+    }
+
+    const closePage = () => {
+        setComponent(false);
+    }
+
+    const navigate = useNavigate();
 
     const navigateToLogin = () => {
         navigate('/');
     };
 
-    const [open,setOpen] = useState(false);
-
     const list = () => (
-        <div style={{width: 250}}> 
-        <List >
-            <div className='MainMenu'>Main Menu</div>
-            <Divider/>
-            {['Dashboard'].map((label,index) => (
-                <ListItem key={index}>
-                    <ListItemIcon><TaskAltIcon/></ListItemIcon>
+        <div style={{ width: 250 }}>
+            <List >
+                <div className='MainMenu'>Main Menu</div>
+                <Divider />
+                {['Dashboard'].map((label, index) => (
+                    <ListItem key={index}>
+                        <ListItemIcon><TaskAltIcon /></ListItemIcon>
                         <ListItemText primary={label} />
-                </ListItem>
-            ))}
-            {['Snapshots'].map((label,index) => (
-                <ListItem key={index}>
-                    <ListItemIcon><CameraEnhanceIcon/></ListItemIcon>
+                    </ListItem>
+                ))}
+                {['Snapshots'].map((label, index) => (
+                    <ListItem key={index}>
+                        <ListItemIcon><CameraEnhanceIcon /></ListItemIcon>
                         <ListItemText primary={label} />
-                </ListItem>
-            ))}
-            {['Settings'].map((label,index) => (
-                <ListItem key={index}>
-                    <ListItemIcon><SettingsIcon/></ListItemIcon>
+                    </ListItem>
+                ))}
+                {['Settings'].map((label, index) => (
+                    <ListItem key={index}>
+                        <ListItemIcon><SettingsIcon /></ListItemIcon>
                         <ListItemText primary={label} />
-                </ListItem>
-            ))}
-            
-            <div className='footer'>
-              {['Log Out'].map((label,index) => (
-                  <ListItem key={index} onClick={navigateToLogin} >
-                      <ListItemIcon><LogoutIcon/></ListItemIcon>
-                          <ListItemText primary={label} />
-                  </ListItem>
-              ))}
-            </div>
-        </List>
+                    </ListItem>
+                ))}
+
+                <div className='footer'>
+                    {['Log Out'].map((label, index) => (
+                        <ListItem key={index} onClick={navigateToLogin} >
+                            <ListItemIcon><LogoutIcon /></ListItemIcon>
+                            <ListItemText primary={label} />
+                        </ListItem>
+                    ))}
+                </div>
+            </List>
         </div>
     )
 
-  return (
-    <div className='header'>
-        <div className='setting' onClick={()=>setOpen(true)}><DensityMediumIcon/></div>
-        <Drawer open={open} anchor={'left'} onClose={()=>setOpen(false)}>
-            {list()}
-        </Drawer>
-    </div>
-  )
+    return (
+        <div className='header'>
+            <div className='setting' onClick={() => setOpen(true)}><DensityMediumIcon /></div>
+            <Drawer open={open} anchor={'left'} onClose={() => setOpen(false)}>
+                {list()}
+            </Drawer>
+            <div className='name'>Settings</div>
+
+            <button className='button1' onClick={openPage} > Respository </button>
+            <button className='button2'> Decision Tree </button>
+            <button className='button3'> Input Data </button>
+
+            {component && (
+                <div>
+                    <div className='heading'>Select the Repository you want HecoCalc to use:</div>
+                    <textarea className='enter' rows={1}></textarea>
+                    <button className='repobutton'>Select Repository</button>
+                    <button className='but' onClick={closePage}>Close Repository Page </button>
+                </div>
+            )}
+
+        </div>
+    )
 }
 
 export default Navbar
