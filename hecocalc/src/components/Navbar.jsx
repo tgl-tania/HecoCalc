@@ -74,7 +74,7 @@ function Navbar() {
             <Drawer open={open} anchor={'left'} onClose={() => setOpen(false)}>
                 {list()}
             </Drawer>
-            <div className='name'>Settings</div>
+            {/* <div className='name'>Settings</div>
 
             <button className='button1' onClick={openPage} > Respository </button>
             <button className='button2'> Decision Tree </button>
@@ -87,9 +87,9 @@ function Navbar() {
                     <button className='repobutton'>Select Repository</button>
                     <button className='but' onClick={closePage}>Close Repository Page </button>
                 </div>
-            )}
+            )} */}
 
-        </div>
+        </div> 
     )
 }
 
