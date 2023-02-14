@@ -4,11 +4,13 @@ import Tornado from "../components/TornadoDiagram";
 import InputScreen from "../components/InputScreen";
 import DeterministicResults from "../components/DeterministicResults";
 import ProbabilisticResults from "../components/ProbabilisticResults";
+import RunSimulations from "../components/RunSimulations";
 import "../css/dashboard.css"
 
 function GraphsDashboard() {
   return (
     <>
+      <div><RunSimulations/></div>
       <div className="DashBoard">      
         <div className="InputScreen"><InputScreen/></div>      
         <div className="DeterministicResults">        
@@ -21,8 +23,7 @@ function GraphsDashboard() {
       <div className="LineAndScatter">
           <Linechart/>
           <ScatterPlot/>
-      </div>
-            
+      </div>            
       <div className="TornadoDiagram">
         <Tornado/>
       </div>
