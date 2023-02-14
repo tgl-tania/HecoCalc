@@ -1,0 +1,28 @@
+.DashBoard{
+    display: grid;
+    place-items: center;
+        
+  }
+  .InputScreen{        
+    width: 50%;
+    margin-bottom: 40px;
+  }
+  .DeterministicResults{
+    width: 100%;  
+    margin-top: 0;
+    display: grid;
+    place-items: center;
+    background-color: #F9F9FB;
+    border-bottom: 1px solid black;
+  }
+  .ProbabilisticResults{
+    width: 100%;
+    margin-top: 0;
+    display: grid;
+    place-items: center;
+    background-color: #F9F9FB;
+  }
+  .Results{
+    width: 50%;
+    margin-bottom: 2%    
+  }   
