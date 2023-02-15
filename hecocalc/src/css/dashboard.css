@@ -1,7 +1,6 @@
 .DashBoard{
     display: grid;
-    place-items: center;
-        
+    place-items: center;        
   }
   .InputScreen{        
     width: 50%;
@@ -25,4 +24,12 @@
   .Results{
     width: 50%;
     margin-bottom: 2%    
+  }
+  .LineAndScatter{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    justify-content: center;
+    margin-top: 20px; 
+    margin: 1%;   
   }   
