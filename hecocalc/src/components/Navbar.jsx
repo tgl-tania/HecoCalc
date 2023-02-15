@@ -1,80 +1,88 @@
-import { Divider, ListItemIcon, ListItemText } from '@mui/material'
-import { Drawer, List, ListItem } from '@mui/material'
-import React, { useState } from 'react'
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { Divider, ListItemIcon, ListItemText } from "@mui/material";
+import { Drawer, List, ListItem } from "@mui/material";
+import React, { useState } from "react";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import CameraEnhanceIcon from "@mui/icons-material/CameraEnhance";
+import SettingsIcon from "@mui/icons-material/Settings";
 import "../css/navbar.css";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 //import Settings from '@mui/icons-material/Settings';
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import { useNavigate } from 'react-router-dom';
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import { useNavigate } from "react-router-dom";
 //import Link from '@mui/material';
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
 
-    const [open, setOpen] = useState(false);
+  const [component, setComponent] = useState(false);
 
-    const [component, setComponent] = useState(false);
+  const openPage = () => {
+    setComponent(true);
+  };
 
-    const openPage = () => {
-        setComponent(true);
+  const closePage = () => {
+    setComponent(false);
+  };
 
-    }
+  const navigate = useNavigate();
 
-    const closePage = () => {
-        setComponent(false);
-    }
+  const navigateToLogin = () => {
+    navigate("/");
+  };
 
-    const navigate = useNavigate();
+  const list = () => (
+    <div style={{ width: 250 }}>
+      <List>
+        <div className="MainMenu">Main Menu</div>
+        <Divider />
+        {["Dashboard"].map((label, index) => (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <TaskAltIcon />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItem>
+        ))}
+        {["Snapshots"].map((label, index) => (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <CameraEnhanceIcon />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItem>
+        ))}
+        {["Settings"].map((label, index) => (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItem>
+        ))}
 
-    const navigateToLogin = () => {
-        navigate('/');
-    };
-
-    const list = () => (
-        <div style={{ width: 250 }}>
-            <List >
-                <div className='MainMenu'>Main Menu</div>
-                <Divider />
-                {['Dashboard'].map((label, index) => (
-                    <ListItem key={index}>
-                        <ListItemIcon><TaskAltIcon /></ListItemIcon>
-                        <ListItemText primary={label} />
-                    </ListItem>
-                ))}
-                {['Snapshots'].map((label, index) => (
-                    <ListItem key={index}>
-                        <ListItemIcon><CameraEnhanceIcon /></ListItemIcon>
-                        <ListItemText primary={label} />
-                    </ListItem>
-                ))}
-                {['Settings'].map((label, index) => (
-                    <ListItem key={index}>
-                        <ListItemIcon><SettingsIcon /></ListItemIcon>
-                        <ListItemText primary={label} />
-                    </ListItem>
-                ))}
-
-                <div className='footer'>
-                    {['Log Out'].map((label, index) => (
-                        <ListItem key={index} onClick={navigateToLogin} >
-                            <ListItemIcon><LogoutIcon /></ListItemIcon>
-                            <ListItemText primary={label} />
-                        </ListItem>
-                    ))}
-                </div>
-            </List>
+        <div className="footer">
+          {["Log Out"].map((label, index) => (
+            <ListItem key={index} onClick={navigateToLogin}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary={label} />
+            </ListItem>
+          ))}
         </div>
-    )
+      </List>
+    </div>
+  );
 
-    return (
-        <div className='header'>
-            <div className='setting' onClick={() => setOpen(true)}><DensityMediumIcon /></div>
-            <Drawer open={open} anchor={'left'} onClose={() => setOpen(false)}>
-                {list()}
-            </Drawer>
-            {/* <div className='name'>Settings</div>
+  return (
+    <div className="navbar-container">
+      <div className="setting" onClick={() => setOpen(true)}>
+        <DensityMediumIcon />
+      </div>
+      <Drawer open={open} anchor={"left"} onClose={() => setOpen(false)}>
+        {list()}
+      </Drawer>
+      {/* <div className='name'>Settings</div>
 
             <button className='button1' onClick={openPage} > Respository </button>
             <button className='button2'> Decision Tree </button>
@@ -88,9 +96,8 @@ function Navbar() {
                     <button className='but' onClick={closePage}>Close Repository Page </button>
                 </div>
             )} */}
-
-        </div> 
-    )
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

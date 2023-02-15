@@ -54,10 +54,7 @@ export default function TableOption2() {
   return (
     <div className="grid-container">
       <div className="header">
-        <div className="header-title">
-          <i className="fa-solid fa-bars"></i>
-          Decision Tree Input
-        </div>
+        <div className="header-title">Decision Tree Input</div>
         <button
           className="button-generate"
           onClick={() => router("/generatetree")}

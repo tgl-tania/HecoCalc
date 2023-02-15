@@ -38,23 +38,48 @@ export default function EditTree({
   const costData = [
     {
       title: "Hospitalisation cost",
-      cost: <input class="Input" onInput={(e) => setCost1(e.target.value)} />,
+      cost: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setCost1(e.target.value)}
+        />
+      ),
     },
     {
       title: "DIGITAL",
-      cost: <input class="Input" onInput={(e) => setCost2(e.target.value)} />,
+      cost: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setCost2(e.target.value)}
+        />
+      ),
     },
     {
       title: "Current Pathway",
-      cost: <input class="Input" onInput={(e) => setCost3(e.target.value)} />,
+      cost: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setCost3(e.target.value)}
+        />
+      ),
     },
     {
       title: "Drug - AEAT",
-      cost: <input class="Input" onInput={(e) => setCost4(e.target.value)} />,
+      cost: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setCost4(e.target.value)}
+        />
+      ),
     },
     {
       title: "Drug - IEAT",
-      cost: <input class="Input" onInput={(e) => setCost5(e.target.value)} />,
+      cost: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setCost5(e.target.value)}
+        />
+      ),
     },
   ];
 
@@ -71,19 +96,39 @@ export default function EditTree({
   const edData = [
     {
       title: "LOS - AEAT",
-      days: <input class="Input" onInput={(e) => setDays1(e.target.value)} />,
+      days: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setDays1(e.target.value)}
+        />
+      ),
     },
     {
       title: "LOS - IEAT",
-      days: <input class="Input" onInput={(e) => setDays2(e.target.value)} />,
+      days: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setDays2(e.target.value)}
+        />
+      ),
     },
     {
       title: "Total duration of antibiotics (d) - AEAT",
-      days: <input class="Input" onInput={(e) => setDays3(e.target.value)} />,
+      days: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setDays3(e.target.value)}
+        />
+      ),
     },
     {
       title: "Total duration of antibiotics (d) - IEAT",
-      days: <input class="Input" onInput={(e) => setDays4(e.target.value)} />,
+      days: (
+        <input
+          className="var-inputs"
+          onInput={(e) => setDays4(e.target.value)}
+        />
+      ),
     },
   ];
 
@@ -115,7 +160,7 @@ export default function EditTree({
       title: "DIGITAL",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -128,7 +173,7 @@ export default function EditTree({
       title: "DIGITAL - AEAT",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -141,7 +186,7 @@ export default function EditTree({
       title: "DIGITAL - AEAT - Hospital Admissions",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -154,7 +199,7 @@ export default function EditTree({
       title: "DIGITAL - IEAT - Hospital Admissions",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -167,7 +212,7 @@ export default function EditTree({
       title: "Current Pathway - AEAT",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -180,7 +225,7 @@ export default function EditTree({
       title: "Current Pathway - AEAT - Hospital Admissions",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -193,7 +238,7 @@ export default function EditTree({
       title: "Current Pathway - IEAT - Hospital Admissions",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -206,7 +251,7 @@ export default function EditTree({
       title: "AEAT - Dead",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
@@ -221,7 +266,7 @@ export default function EditTree({
       title: "IEAT - Dead",
       value: (
         <input
-          class="Input"
+          className="var-inputs"
           type="number"
           min="0"
           max="1"
