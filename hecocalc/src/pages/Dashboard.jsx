@@ -21,8 +21,8 @@ function GraphsDashboard() {
         </div>
       </div>
       <div className="LineAndScatter">
-          <Linechart/>
           <ScatterPlot/>
+          <Linechart/>          
       </div>            
       <div className="TornadoDiagram">
         <Tornado/>
