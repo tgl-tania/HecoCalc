@@ -1,8 +1,6 @@
 import React from "react";
-import DecisionTree from "../components/DecisionTree";
+import DecisionTree from "./DecisionTree";
 
-export default function GenerateTree(){
-    return(
-        <DecisionTree />
-    )
+export default function GenerateTree() {
+  return <DecisionTree />;
 }

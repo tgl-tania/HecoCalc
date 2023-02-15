@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Tree from "react-d3-tree";
 import "../css/decisiontree.css";
 import treeData from "../json/treeData.json";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
-import EditTree from "./EditTree";
+import EditTree from "../components/EditTree";
 
 export default function TreeGraph() {
   const [editBtn, setEditBtn] = useState(true);
