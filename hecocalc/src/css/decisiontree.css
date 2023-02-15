@@ -1,0 +1,92 @@
+#treeWrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.tree {
+  height: 100%;
+  overflow: hidden;
+}
+
+.node__branch {
+  translate: -237px -3px;
+}
+
+.node__branch > circle {
+  translate: 237px 3px;
+  fill: #ff921d;
+  stroke-width: 1px;
+}
+
+.node__root {
+  translate: -10px -3px;
+}
+
+.node__root > circle {
+  translate: 10px 3px;
+  fill: #ff921d;
+  stroke-width: 1px;
+}
+
+.collapse-tree {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: 300ms ease-in-out;
+}
+
+.table-container {
+  transition: 300ms ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.edit-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border: none;
+  padding: 10px 15px;
+  background-color: #737373;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  z-index: 1;
+}
+
+.edit-btn::before {
+  content: "Edit";
+}
+
+.update-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: #ff921d;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  z-index: 1;
+  transition: 0.1s ease-in-out;
+}
+
+.update-btn::before {
+  content: "Update";
+}
+
+.edit-btn:hover {
+  background-color: #838383;
+}
+
+.node__branch .rd3t-label__attributes tspan:first-of-type {
+  fill: rgb(62, 212, 62);
+}
+
+.node__branch .rd3t-label__attributes tspan:last-of-type {
+  fill: red;
+}

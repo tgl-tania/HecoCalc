@@ -1,0 +1,230 @@
+[
+  {
+    "name": "UTI",
+    "children": [
+      {
+        "name": "DIGITAL",
+        "Breakdown": "fjerij",
+        "attributes": {
+          "Prob": "0.7",
+          "Cost": "406.13"
+        },
+        "children": [
+          {
+            "name": "AEAT",
+            "attributes": {
+              "Prob": "0.3",
+              "Cost": "373.33"
+            },
+            "children": [
+              {
+                "name": "Hospital Admission",
+                "attributes": {
+                  "Prob": "0.045",
+                  "Cost": "18280.85"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.118"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.882"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Non-hospital Admission",
+                "attributes": {
+                  "Prob": "0.955",
+                  "Cost": "0"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.118"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.882"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "IEAT",
+            "attributes": {
+              "Prob": "0.7",
+              "Cost": "64.85"
+            },
+            "children": [
+              {
+                "name": "Hospital Admission",
+                "attributes": {
+                  "Prob": "0.09",
+                  "Cost": "39173.25"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.201"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.789"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Non-hospital Admission",
+                "attributes": {
+                  "Prob": "0.91",
+                  "Cost": "0"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.201"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.789"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Current Pathway",
+        "attributes": {
+          "Prob": "0.3",
+          "Cost": "323"
+        },
+        "children": [
+          {
+            "name": "AEAT",
+            "attributes": {
+              "Prob": "0.785",
+              "Cost": "373.33"
+            },
+            "children": [
+              {
+                "name": "Hospital Admission",
+                "attributes": {
+                  "Prob": "0.09",
+                  "Cost": "18280.85"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.118"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.882"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Non-hospital Admission",
+                "attributes": {
+                  "Prob": "0.91",
+                  "Cost": "0"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.118"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.882"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "IEAT",
+            "attributes": {
+              "Prob": "0.215",
+              "Cost": "64.85"
+            },
+            "children": [
+              {
+                "name": "Hospital Admission",
+                "attributes": {
+                  "Prob": "0.1",
+                  "Cost": "39173.25"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.201"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.799"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Non-hospital Admission",
+                "attributes": {
+                  "Prob": "0.9",
+                  "Cost": "0"
+                },
+                "children": [
+                  {
+                    "name": "Dead",
+                    "attributes": {
+                      "Prob": "0.201"
+                    }
+                  },
+                  {
+                    "name": "Alive - cured",
+                    "attributes": {
+                      "Prob": "0.799"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

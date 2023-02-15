@@ -1,127 +1,124 @@
 .header {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-
 .MainMenu {
-    color: rgb(17, 12, 13);
-    font-size: x-large;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-left: 25px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  color: rgb(17, 12, 13);
+  font-size: x-large;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .footer {
-    color: black;
+  color: black;
 
-    /*  Use another css property to fix on bottom of the navbar*/
-    /* margin-top: 590px; */
+  /*  Use another css property to fix on bottom of the navbar*/
+  /* margin-top: 590px; */
 
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
 }
 
 .footer:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
 .setting {
-    color: rgb(3, 3, 3);
-    margin-left: 20px;
-    margin-top: 0px;
-    width: 20px;
+  color: rgb(3, 3, 3);
+  margin-left: 20px;
+  margin-top: 0px;
+  width: 20px;
 }
 
 .name {
-    padding-left: 20px;
-    font-size: 150%;
+  padding-left: 20px;
+  font-size: 150%;
 }
 
 .button1 {
-    left: 440px;
-    border-radius: 0%;
-    top: 100px;
-    background-color: rgb(200, 200, 200);
-    color: black;
-    border-right: 0.5px solid black;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
+  left: 440px;
+  border-radius: 0%;
+  top: 100px;
+  background-color: rgb(200, 200, 200);
+  color: black;
+  border-right: 0.5px solid black;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .button2 {
-    left: 560px;
-    border-radius: 0%;
-    top: 100px;
-    background-color: rgb(200, 200, 200);
-    color: black;
+  left: 560px;
+  border-radius: 0%;
+  top: 100px;
+  background-color: rgb(200, 200, 200);
+  color: black;
 }
 
 .button3 {
-    left: 680px;
-    border-radius: 0%;
-    top: 100px;
-    background-color: rgb(200, 200, 200);
-    color: black;
-    border-left: 0.5px solid black;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
+  left: 680px;
+  border-radius: 0%;
+  top: 100px;
+  background-color: rgb(200, 200, 200);
+  color: black;
+  border-left: 0.5px solid black;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .button1:hover {
-    background-color: rgb(80, 80, 80);
-    color: white;
+  background-color: rgb(80, 80, 80);
+  color: white;
 }
 
 .button2:hover {
-    background-color: rgb(80, 80, 80);
-    color: white;
+  background-color: rgb(80, 80, 80);
+  color: white;
 }
 
 .button3:hover {
-    background-color: rgb(80, 80, 80);
-    color: white;
+  background-color: rgb(80, 80, 80);
+  color: white;
 }
 
 .enter {
-    background-color: rgb(202, 202, 202);
-    width: 700px;
-    resize: none;
-    height: 33px;
-    border: 0px;
-    font-size: 23px;
-    top: 273px;
-    left: 0px;
-    position: relative;
-    margin: 0%;
-    padding: none;
+  background-color: rgb(202, 202, 202);
+  width: 700px;
+  resize: none;
+  height: 33px;
+  border: 0px;
+  font-size: 23px;
+  top: 273px;
+  left: 0px;
+  position: relative;
+  margin: 0%;
+  padding: none;
 }
 
 .heading {
-    position: fixed;
-    left: 140px;
-    top: 225px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: fixed;
+  left: 140px;
+  top: 225px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .repobutton {
-    width: 150px;
-    position: relative;
-    top: 260px;
-    left: 20px;
-    margin: 0px;
+  width: 150px;
+  position: relative;
+  top: 260px;
+  left: 20px;
+  margin: 0px;
 }
 
 .but {
-    width: 200px;
-    position: relative;
-    top: 500px;
-    left: 45px;
+  width: 200px;
+  position: relative;
+  top: 500px;
+  left: 45px;
 }
