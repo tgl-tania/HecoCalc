@@ -6,17 +6,17 @@
   margin-top: 20px;
 }
 
-.input-group {  
-  display: grid;  
-  align-items: center;  
-  justify-content: center; 
+.input-group {
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 .input-group:not(:last-child) p::after {
   content: "*";
   color: red;
 }
-h1{
-  margin-top: 10%;  
+h1 {
+  margin-top: 10%;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -24,11 +24,11 @@ h1{
 }
 h1,
 p {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   text-align: center;
 }
-.input-group p{
-  font-family: 'Open Sans';
+.input-group p {
+  font-family: "Open Sans";
   font-style: normal;
   font-size: 14px;
   width: 100px;
@@ -38,11 +38,11 @@ p {
 .input-group input[type="text"] {
   background-color: #f8f8f8;
   border: none;
-  border-radius: 3.5px;  
+  border-radius: 3.5px;
   width: 95px;
   height: 30px;
-  margin-top: 5px;  
+  margin-top: 5px;
   font-size: 16px;
-  font-family: 'Open Sans'; 
-  text-align: center;  
+  font-family: "Open Sans";
+  text-align: center;
 }

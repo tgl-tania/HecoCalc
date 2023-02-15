@@ -3,7 +3,9 @@
   background-color: rgba(255, 147, 30, 1);
   color: white;
   font-size: 20px;
-  padding: 15px 20px;
+  /* padding: 15px 20px; */
+  width: 117px;
+  height: 40px;
   border: none;
   border-radius: 5px;
 }
@@ -29,18 +31,18 @@
 .grid-container {
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  padding: 30px;
+  margin-left: 40px;
   gap: 60px;
 }
 
 .rows::-webkit-scrollbar {
-  width: 2rem;
+  height: 5px;
 }
 
 .rows::-webkit-scrollbar-track {
   background: rgb(240, 227, 213);
   border-radius: 100vh;
-  margin-block: 0.5em;
 }
 
 .rows::-webkit-scrollbar-thumb {
@@ -75,15 +77,16 @@
 
 .columns .column-title {
   font-size: 20px;
+  font-weight: 600;
 }
 
 .columns {
-  font-weight: 600;
   /* margin-top: 65px; */
   display: flex;
   flex-direction: column;
   gap: 35px;
   align-items: flex-start;
+  font-size: 15px;
 }
 
 .column-values {
@@ -91,7 +94,7 @@
 }
 
 .columns .label-container {
-  margin-bottom: 9px;
+  margin-bottom: 11px;
 }
 
 .variables input {

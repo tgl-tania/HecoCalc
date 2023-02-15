@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import CameraEnhanceIcon from "@mui/icons-material/CameraEnhance";
 import SettingsIcon from "@mui/icons-material/Settings";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import "../css/navbar.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 //import Settings from '@mui/icons-material/Settings';
@@ -14,21 +15,21 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const [component, setComponent] = useState(false);
-
-  const openPage = () => {
-    setComponent(true);
-  };
-
-  const closePage = () => {
-    setComponent(false);
-  };
-
   const navigate = useNavigate();
 
-  const navigateToLogin = () => {
-    navigate("/");
+  const router = (route) => {
+    navigate(route);
   };
+
+  // const [component, setComponent] = useState(false);
+
+  // const openPage = () => {
+  //   setComponent(true);
+  // };
+
+  // const closePage = () => {
+  //   setComponent(false);
+  // };
 
   const list = () => (
     <div style={{ width: 250 }}>
@@ -36,15 +37,35 @@ function Navbar() {
         <div className="MainMenu">Main Menu</div>
         <Divider />
         {["Dashboard"].map((label, index) => (
-          <ListItem key={index}>
+          <ListItem
+            key={index}
+            onClick={() => router("/dashboard")}
+            className="nav-item"
+          >
             <ListItemIcon>
               <TaskAltIcon />
             </ListItemIcon>
             <ListItemText primary={label} />
           </ListItem>
         ))}
+        {["Decision Tree"].map((label, index) => (
+          <ListItem
+            key={index}
+            onClick={() => router("/input-page")}
+            className="nav-item"
+          >
+            <ListItemIcon>
+              <AccountTreeIcon />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItem>
+        ))}
         {["Snapshots"].map((label, index) => (
-          <ListItem key={index}>
+          <ListItem
+            key={index}
+            onClick={() => router("/snapshots")}
+            className="nav-item"
+          >
             <ListItemIcon>
               <CameraEnhanceIcon />
             </ListItemIcon>
@@ -52,7 +73,11 @@ function Navbar() {
           </ListItem>
         ))}
         {["Settings"].map((label, index) => (
-          <ListItem key={index}>
+          <ListItem
+            key={index}
+            onClick={() => router("/settings")}
+            className="nav-item"
+          >
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
@@ -62,7 +87,11 @@ function Navbar() {
 
         <div className="footer">
           {["Log Out"].map((label, index) => (
-            <ListItem key={index} onClick={navigateToLogin}>
+            <ListItem
+              key={index}
+              onClick={() => router("/")}
+              className="nav-item"
+            >
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>

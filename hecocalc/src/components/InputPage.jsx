@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/inputpage.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function TableOption2() {
   const navigate = useNavigate();
@@ -52,139 +53,142 @@ export default function TableOption2() {
   ];
 
   return (
-    <div className="grid-container">
-      <div className="header">
-        <div className="header-title">Decision Tree Input</div>
-        <button
-          className="button-generate"
-          onClick={() => router("/generatetree")}
-        >
-          Generate
-        </button>
-      </div>
-      <div className="table">
-        <div className="columns">
-          <div className="column-title">Transition Probabilities</div>
-          <div className="column-values">
-            {transitionProb.map((prob) => {
+    <>
+      <Navbar />
+      <div className="grid-container">
+        <div className="header">
+          <div className="header-title">Decision Tree Input</div>
+          <button
+            className="button-generate"
+            onClick={() => router("/generatetree")}
+          >
+            Generate
+          </button>
+        </div>
+        <div className="table">
+          <div className="columns">
+            <div className="column-title">Transition Probabilities</div>
+            <div className="column-values">
+              {transitionProb.map((prob) => {
+                return (
+                  <div className="label-container">
+                    <label htmlFor="">{prob}</label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="rows">
+            {variables.map((vars) => {
               return (
-                <div className="label-container">
-                  <label htmlFor="">{prob}</label>
+                <div className="variables">
+                  <label htmlFor="">{vars}</label>
+                  {transitionProb.map(() => {
+                    return (
+                      <div>
+                        <input type="text" />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="rows">
-          {variables.map((vars) => {
-            return (
-              <div className="variables">
-                <label htmlFor="">{vars}</label>
-                {transitionProb.map(() => {
-                  return (
-                    <div>
-                      <input type="text" />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
-      <div className="table">
-        <div className="columns">
-          <div className="column-title">Utilities</div>
-          <div className="column-values">
-            {utilities.map((prob) => {
+        <div className="table">
+          <div className="columns">
+            <div className="column-title">Utilities</div>
+            <div className="column-values">
+              {utilities.map((prob) => {
+                return (
+                  <div className="label-container">
+                    <label htmlFor="">{prob}</label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="rows">
+            {variables.map((vars) => {
               return (
-                <div className="label-container">
-                  <label htmlFor="">{prob}</label>
+                <div className="variables">
+                  <label htmlFor="">{vars}</label>
+                  {utilities.map(() => {
+                    return (
+                      <div>
+                        <input type="text" />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="rows">
-          {variables.map((vars) => {
-            return (
-              <div className="variables">
-                <label htmlFor="">{vars}</label>
-                {utilities.map(() => {
-                  return (
-                    <div>
-                      <input type="text" />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
-      <div className="table">
-        <div className="columns">
-          <div className="column-title">Costs (£)</div>
-          <div className="column-values">
-            {costs.map((prob) => {
+        <div className="table">
+          <div className="columns">
+            <div className="column-title">Costs (£)</div>
+            <div className="column-values">
+              {costs.map((prob) => {
+                return (
+                  <div className="label-container">
+                    <label htmlFor="">{prob}</label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="rows">
+            {variables.map((vars) => {
               return (
-                <div className="label-container">
-                  <label htmlFor="">{prob}</label>
+                <div className="variables">
+                  <label htmlFor="">{vars}</label>
+                  {costs.map(() => {
+                    return (
+                      <div>
+                        <input type="text" />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="rows">
-          {variables.map((vars) => {
-            return (
-              <div className="variables">
-                <label htmlFor="">{vars}</label>
-                {costs.map(() => {
-                  return (
-                    <div>
-                      <input type="text" />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
-      <div className="table">
-        <div className="columns">
-          <div className="column-title">Event Duration (Days)</div>
-          <div className="column-values">
-            {days.map((prob) => {
+        <div className="table">
+          <div className="columns">
+            <div className="column-title">Event Duration (Days)</div>
+            <div className="column-values">
+              {days.map((prob) => {
+                return (
+                  <div className="label-container">
+                    <label htmlFor="">{prob}</label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="rows">
+            {variables.map((vars) => {
               return (
-                <div className="label-container">
-                  <label htmlFor="">{prob}</label>
+                <div className="variables">
+                  <label htmlFor="">{vars}</label>
+                  {days.map(() => {
+                    return (
+                      <div>
+                        <input type="text" />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="rows">
-          {variables.map((vars) => {
-            return (
-              <div className="variables">
-                <label htmlFor="">{vars}</label>
-                {days.map(() => {
-                  return (
-                    <div>
-                      <input type="text" />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
       </div>
-    </div>
+    </>
   );
 }

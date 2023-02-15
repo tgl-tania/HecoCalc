@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Tree from "react-d3-tree";
 import "../css/decisiontree.css";
 import treeData from "../json/treeData.json";
+import Navbar from "./Navbar";
 
 import EditTree from "./EditTree";
 
@@ -193,50 +194,53 @@ export default function TreeGraph() {
   };
 
   return (
-    <div id="treeWrapper">
-      <div className="tree">
-        <Tree
-          data={JSON.parse(treeDataDisplayed)}
-          translate={{ x: 100, y: 450 }}
-          pathFunc={"step"}
-          zoom={0.7}
-          separation={{ siblings: 1, nonSiblings: 1 }}
-          nodeSize={{ x: 400, y: 70 }}
-          branchNodeClassName="node__branch"
-          leafNodeClassName="node__leaf"
-          rootNodeClassName="node__root"
-        />
+    <>
+      <Navbar />
+      <div id="treeWrapper">
+        <div className="tree">
+          <Tree
+            data={JSON.parse(treeDataDisplayed)}
+            translate={{ x: 100, y: 450 }}
+            pathFunc={"step"}
+            zoom={0.7}
+            separation={{ siblings: 1, nonSiblings: 1 }}
+            nodeSize={{ x: 400, y: 70 }}
+            branchNodeClassName="node__branch"
+            leafNodeClassName="node__leaf"
+            rootNodeClassName="node__root"
+          />
+        </div>
+        <button
+          className={editBtn ? "edit-btn" : "update-btn"}
+          onClick={() => {
+            toggleNav();
+            toggleEditButton();
+          }}
+        ></button>
+        <div id="sidebar" className={open ? "" : "collapse"}>
+          <EditTree
+            open={open}
+            setCost1={setCost1}
+            setCost2={setCost2}
+            setCost3={setCost3}
+            setCost4={setCost4}
+            setCost5={setCost5}
+            setDays1={setDays1}
+            setDays2={setDays2}
+            setDays3={setDays3}
+            setDays4={setDays4}
+            setProb1={setProb1}
+            setProb2={setProb2}
+            setProb3={setProb3}
+            setProb4={setProb4}
+            setProb5={setProb5}
+            setProb6={setProb6}
+            setProb7={setProb7}
+            setProb8={setProb8}
+            setProb9={setProb9}
+          />
+        </div>
       </div>
-      <button
-        className={editBtn ? "edit-btn" : "update-btn"}
-        onClick={() => {
-          toggleNav();
-          toggleEditButton();
-        }}
-      ></button>
-      <div id="sidebar" className={open ? "" : "collapse"}>
-        <EditTree
-          open={open}
-          setCost1={setCost1}
-          setCost2={setCost2}
-          setCost3={setCost3}
-          setCost4={setCost4}
-          setCost5={setCost5}
-          setDays1={setDays1}
-          setDays2={setDays2}
-          setDays3={setDays3}
-          setDays4={setDays4}
-          setProb1={setProb1}
-          setProb2={setProb2}
-          setProb3={setProb3}
-          setProb4={setProb4}
-          setProb5={setProb5}
-          setProb6={setProb6}
-          setProb7={setProb7}
-          setProb8={setProb8}
-          setProb9={setProb9}
-        />
-      </div>
-    </div>
+    </>
   );
 }
