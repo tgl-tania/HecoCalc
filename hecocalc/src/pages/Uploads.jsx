@@ -31,7 +31,7 @@ function Uploads() {
       Body: file,
       /* Using the constant S3_BUCKET doesn't work -> so I just entered manually bucket name
       Bucket : S3_BUCKET */
-      Bucket: 'alancompany',
+      Bucket: 'alancompany/Snapshots/',
       Key: file.name,
     };
 
