@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "react-d3-tree": "^3.5.0",
+    "react-data-table": "^0.1.0",
+    "react-data-table-component": "^7.5.3",
     "react-router-dom": "^6.7.0"
   }
 }

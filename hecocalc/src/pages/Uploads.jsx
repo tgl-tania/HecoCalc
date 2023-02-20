@@ -60,7 +60,7 @@ function Uploads() {
       <div>
         <form onSubmit={handleUpload}>
           <Upload
-            accept=".jpg,.png,.jpeg,.svg"
+            // accept=".jpg,.png,.jpeg,.svg"
             label="File Uploader"
             files={files}
             setFiles={setFiles}
