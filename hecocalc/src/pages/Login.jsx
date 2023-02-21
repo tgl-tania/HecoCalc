@@ -30,6 +30,7 @@ function Login() {
 
     user.authenticateUser(authDetails, {
       onSuccess: function (result) {
+        console.log("SUCCESS");
         var accessToken = result.getAccessToken().getJwtToken();
 
         var idToken = result.idToken.jwtToken;
