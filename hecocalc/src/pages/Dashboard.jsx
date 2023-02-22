@@ -5,29 +5,46 @@ import InputScreen from "../components/InputScreen";
 import DeterministicResults from "../components/DeterministicResults";
 import ProbabilisticResults from "../components/ProbabilisticResults";
 import RunSimulations from "../components/RunSimulations";
-import "../css/dashboard.css"
+import Navbar from "../components/Navbar";
+import "../css/dashboard.css";
 
 function GraphsDashboard() {
   return (
     <>
-      <div><RunSimulations/></div>
-      <div className="DashBoard">      
-        <div className="InputScreen"><InputScreen/></div>      
-        <div className="DeterministicResults">        
-          <div className="Results"><DeterministicResults/></div>
+      <Navbar />
+      <div>
+        <RunSimulations />
+      </div>
+      <div className="DashBoard">
+        <div className="InputScreen">
+          <InputScreen />
         </div>
-        <div className="ProbabilisticResults">        
-          <div className="Results"><ProbabilisticResults/></div>
+        <div className="DeterministicResults">
+          <div className="Results">
+            <DeterministicResults />
+          </div>
+        </div>
+        <div className="ProbabilisticResults">
+          <div className="Results">
+            <ProbabilisticResults />
+          </div>
         </div>
       </div>
-      <div className="LineAndScatter">
-          <ScatterPlot/>
-          <Linechart/>          
-      </div>            
-      <div className="TornadoDiagram">
-        <Tornado/>
+      <div className="GridLineAndScatter">
+        <div className="grid-itemscatter">
+        <ScatterPlot />
+        </div>
+        <div className="grid-itemline">
+        <Linechart />
+        </div>
+        {/* <h1 className="heading">One-way sensitivity analysis</h1> */}
+        <hr className="horizontalLine"/>
       </div>
-  </>
+      
+      <div className="grid-itemtornado">
+        <Tornado />
+      </div>
+    </>
   );
 }
 

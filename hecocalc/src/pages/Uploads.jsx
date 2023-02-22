@@ -31,7 +31,7 @@ function Uploads() {
       Body: file,
       /* Using the constant S3_BUCKET doesn't work -> so I just entered manually bucket name
       Bucket : S3_BUCKET */
-      Bucket: 'alancompany',
+      Bucket: 'alancompany/Snapshots/',
       Key: file.name,
     };
 
@@ -60,7 +60,7 @@ function Uploads() {
       <div>
         <form onSubmit={handleUpload}>
           <Upload
-            accept=".jpg,.png,.jpeg,.svg"
+            // accept=".jpg,.png,.jpeg,.svg"
             label="File Uploader"
             files={files}
             setFiles={setFiles}

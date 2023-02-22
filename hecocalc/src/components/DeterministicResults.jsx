@@ -1,15 +1,15 @@
 import React from "react";
-import '../css/deterministicresults.css'
+import "../css/deterministicresults.css";
 
 const DeterministicResults = () => {
   return (
     <div>
       <Template
-        box1={633.40}
-        box2={12.90}
+        box1={633.4}
+        box2={12.9}
         box3={929.02}
-        box4={633.40}
-        box5={12.90}
+        box4={633.4}
+        box5={12.9}
         box6={929.02}
         box7={929.02}
       />
@@ -17,10 +17,10 @@ const DeterministicResults = () => {
   );
 };
 
-const Template = ({ box1, box2, box3,box4, box5, box6,box7}) => {
+const Template = ({ box1, box2, box3, box4, box5, box6, box7 }) => {
   return (
     <div>
-      <h1 >DETERMINISTIC RESULTS</h1>
+      <h1>DETERMINISTIC RESULTS</h1>
       <div className="output-container">
         <div className="output-group">
           <p>TOTAL COST</p>          
@@ -57,8 +57,8 @@ const Template = ({ box1, box2, box3,box4, box5, box6,box7}) => {
           <h5>(quality-adjusted life years)"</h5>          
         </div>
         <div className="output-group">
-          <p>   </p>          
-          <p>   </p>
+          <p> </p>
+          <p> </p>
         </div>
         <div className="output-group">  
           <p>   </p>        

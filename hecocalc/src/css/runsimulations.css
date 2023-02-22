@@ -1,67 +1,67 @@
 .component {
-    display: flex;
-    align-items: center;    
-    padding: 8px 15px;
-    gap: 15px;
-    width: 100%;    
-    justify-content: flex-end;
-  }
-  .component p{
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0.02em;
-    text-align: center;    
-  }
-    
-  input[type="text"] {
-    font-family: Open Sans;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0.02em;
-    width: 80px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-  } 
-  
-  .run-button {
-    width: 155px;
-    height: 30px;
-    font-size: 14px;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 200;
-    background: #FF931E;
-    color: #FFFFFF;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    text-align: center;    
-  }
-  
-  /* Play Button Symbol */
-  .run-button::before {
-    content: "\25B6";
-    font-size: 16px;
-    margin-right: 10px;
-  }  
-  .save-button{
-    background: #6d6d6dcf;
-    color: #FFFFFF;
-    height: 30px;
-    width: 67px; 
-    border: none;
-    box-shadow: 0px 1px 7px #FFFFFF;   
-    border-radius: 5px;    
-    font-family: 'Open Sans';
-    font-size: 14px;
-    font-weight: 200;
-    line-height: 22px;
-    letter-spacing: 0.02em;
-    text-align: center;
-    cursor: pointer;
-  }
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 15px;
+  width: 100%;
+  justify-content: flex-end;
+}
+.component p {
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.component input[type="text"] {
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+}
+
+.run-button {
+  width: 155px;
+  height: 30px;
+  font-size: 14px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 200;
+  background: #ff931e;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Play Button Symbol */
+.run-button::before {
+  content: "\25B6";
+  font-size: 16px;
+  margin-right: 10px;
+}
+.save-button {
+  background: #6d6d6dcf;
+  color: #ffffff;
+  height: 30px;
+  width: 67px;
+  border: none;
+  box-shadow: 0px 1px 7px #ffffff;
+  border-radius: 5px;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  cursor: pointer;
+}

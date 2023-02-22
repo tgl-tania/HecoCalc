@@ -1,12 +1,12 @@
 :root {
-  --primary: #16214C;
+  --primary: #16214c;
   --secondary: #273362;
   /* --dark: #4c4c4c; */
   --dark: #797c7f;
   --light: #9a9a9a;
   --white: #f7f7f7;
 
-  --icons : #fb9118;
+  --icons: #fb9118;
 }
 
 html {
@@ -23,10 +23,8 @@ html {
 body {
   /* font-family: 'Encode Sans Expanded',
   sans-serif; */
-  font-family: 'Monserrat',
-  sans-serif; 
+  font-family: "Monserrat", sans-serif;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
