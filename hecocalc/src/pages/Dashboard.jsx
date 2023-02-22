@@ -30,11 +30,18 @@ function GraphsDashboard() {
           </div>
         </div>
       </div>
-      <div className="LineAndScatter">
+      <div className="GridLineAndScatter">
+        <div className="grid-itemscatter">
         <ScatterPlot />
+        </div>
+        <div className="grid-itemline">
         <Linechart />
+        </div>
+        {/* <h1 className="heading">One-way sensitivity analysis</h1> */}
+        <hr className="horizontalLine"/>
       </div>
-      <div className="TornadoDiagram">
+      
+      <div className="grid-itemtornado">
         <Tornado />
       </div>
     </>
