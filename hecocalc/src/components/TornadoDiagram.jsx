@@ -1,8 +1,11 @@
 import React from 'react';
 import {
-  Chart, CommonSeriesSettings, Legend, SeriesTemplate, Animation, Title, ValueAxis, Tooltip
+  Chart, CommonSeriesSettings, Legend, SeriesTemplate, Animation, ValueAxis, Tooltip, Size, AxisTitle, Label, Format, AdaptiveLayout
 } from 'devextreme-react/chart';
 import data from '../json/tornado-data.json';
+
+//palette specifies the colors for the chart
+ var palette= ["#2F75B5", "#EC7D31"]
 
 class Tornado extends React.Component {
 
@@ -11,40 +14,45 @@ class Tornado extends React.Component {
 
   render() {
     return (      
-      <div style={{minWidth: "1100px"}}>
-        <h3 style={{fontSize: '16px', color: "#3333ff", }}>One-way sensitivity analysis</h3>
-        <div style={{borderBottom: '1px solid #3333ff'}}></div>
+      <div style={{textAlign:'center'}}>
+        <h3 style={{fontSize: '24px'}}>Tornado diagram (ICER)</h3>
         <Chart id="chart" dataSource={data} 
         barGroupPadding={0.2} rotated={true} 
-        palette="Harmony Light">
-          <Title text="Tornado diagram (ICER)" />
+        palette={palette}>
+        <AdaptiveLayout width={400} height={400}/>
+        <Size height={700} />
           {/* The tornado diagram is created as a bar range chart, 
           the following takes the defined ranges from the json file */}
-          <CommonSeriesSettings
+        <CommonSeriesSettings
             type="rangeBar"
+            format="currency"
             argumentField="yAxisLabel"
             rangeValue1Field="start"
             rangeValue2Field="end"
             barOverlapGroup="yAxisLabel"
-            
-          >
-          </CommonSeriesSettings>
+        >
+        </CommonSeriesSettings>
 
-          <Legend verticalAlignment="bottom" horizontalAlignment="right">
-          </Legend>
+        <Legend position="inside" verticalAlignment="bottom" horizontalAlignment="right">
+        </Legend>
 
-          <ValueAxis title="ICER"
+        <ValueAxis 
           //Sets the axis range from 0,3500 (visualRange)
-          defaultVisualRange={this.visualRange} 
-          tickInterval={500}
-          /> 
+        defaultVisualRange={this.visualRange} 
+        tickInterval={500}>
+          <AxisTitle text={"ICER"} width={100}/>
+          <Label>
+            <Format
+              type="currency"
+              currency={"GBP"}
+            />
+          </Label>
+        </ValueAxis> 
 
-          <Tooltip
-            enabled={true}
-          />
+        <Tooltip enabled={true}/>
 
-          <SeriesTemplate nameField="category" /> 
-          <Animation enabled={false} />
+        <SeriesTemplate nameField="category" /> 
+        <Animation enabled={false} />
         </Chart>
       </div>
     );
