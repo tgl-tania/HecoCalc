@@ -49,7 +49,7 @@ function Login() {
 
           var s3 = new AWS.S3({
             apiVersion: "2006-03-01",
-            params: { Bucket: "arn:aws:s3:::alancompany" },
+            params: { Bucket: "alancompany" },
           });
 
           s3.listObjects({ Delimiter: "/" }, function (err, data) {
