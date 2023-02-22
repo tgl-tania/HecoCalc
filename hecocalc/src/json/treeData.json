@@ -4,7 +4,6 @@
     "children": [
       {
         "name": "DIGITAL",
-        "Breakdown": "fjerij",
         "attributes": {
           "Prob": "0.7",
           "Cost": "406.13"
@@ -14,14 +13,16 @@
             "name": "AEAT",
             "attributes": {
               "Prob": "0.3",
-              "Cost": "373.33"
+              "Cost": "28.72",
+              "days": "13"
             },
             "children": [
               {
-                "name": "Hospital Admission",
+                "name": "Hospital Adm",
                 "attributes": {
                   "Prob": "0.045",
-                  "Cost": "18280.85"
+                  "Cost": "2611.55",
+                  "days": "7"
                 },
                 "children": [
                   {
@@ -39,7 +40,7 @@
                 ]
               },
               {
-                "name": "Non-hospital Admission",
+                "name": "Non-hospital Adm",
                 "attributes": {
                   "Prob": "0.955",
                   "Cost": "0"
@@ -65,14 +66,16 @@
             "name": "IEAT",
             "attributes": {
               "Prob": "0.7",
-              "Cost": "64.85"
+              "Cost": "4.63",
+              "days": "14"
             },
             "children": [
               {
-                "name": "Hospital Admission",
+                "name": "Hospital Adm",
                 "attributes": {
                   "Prob": "0.09",
-                  "Cost": "39173.25"
+                  "Cost": "2611.55",
+                  "days": "15"
                 },
                 "children": [
                   {
@@ -90,7 +93,7 @@
                 ]
               },
               {
-                "name": "Non-hospital Admission",
+                "name": "Non-hospital Adm",
                 "attributes": {
                   "Prob": "0.91",
                   "Cost": "0"
@@ -125,14 +128,16 @@
             "name": "AEAT",
             "attributes": {
               "Prob": "0.785",
-              "Cost": "373.33"
+              "Cost": "28.72",
+              "days": "13"
             },
             "children": [
               {
-                "name": "Hospital Admission",
+                "name": "Hospital Adm",
                 "attributes": {
                   "Prob": "0.09",
-                  "Cost": "18280.85"
+                  "Cost": "2611.55",
+                  "days": "7"
                 },
                 "children": [
                   {
@@ -150,7 +155,7 @@
                 ]
               },
               {
-                "name": "Non-hospital Admission",
+                "name": "Non-hospital Adm",
                 "attributes": {
                   "Prob": "0.91",
                   "Cost": "0"
@@ -176,14 +181,16 @@
             "name": "IEAT",
             "attributes": {
               "Prob": "0.215",
-              "Cost": "64.85"
+              "Cost": "4.63",
+              "days": "14"
             },
             "children": [
               {
-                "name": "Hospital Admission",
+                "name": "Hospital Adm",
                 "attributes": {
                   "Prob": "0.1",
-                  "Cost": "39173.25"
+                  "Cost": "2611.55",
+                  "days": "15"
                 },
                 "children": [
                   {
@@ -201,7 +208,7 @@
                 ]
               },
               {
-                "name": "Non-hospital Admission",
+                "name": "Non-hospital Adm",
                 "attributes": {
                   "Prob": "0.9",
                   "Cost": "0"

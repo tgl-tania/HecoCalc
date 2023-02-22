@@ -1,7 +1,17 @@
-import React from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import "../css/edittree.css";
-
+import {
+  fChild,
+  ffChild,
+  fffChild,
+  fsChild,
+  sChild,
+  sfChild,
+  ssChild,
+  sffChild,
+  sfffChild,
+  ssffChild,
+} from "../data/ChildrenData";
 export default function EditTree({
   open,
   setCost1,
@@ -13,17 +23,9 @@ export default function EditTree({
   setDays2,
   setDays3,
   setDays4,
-  setProb1,
-  setProb2,
-  setProb3,
-  setProb4,
-  setProb5,
-  setProb6,
-  setProb7,
-  setProb8,
-  setProb9,
 }) {
   document.body.style.overflowX = "hidden";
+
   const costColumns = [
     {
       name: "Costs (£)",
@@ -157,7 +159,7 @@ export default function EditTree({
 
   const data = [
     {
-      title: "DIGITAL",
+      title: fChild(),
       value: (
         <input
           className="var-inputs"
@@ -165,105 +167,15 @@ export default function EditTree({
           min="0"
           max="1"
           step="0.1"
-          onInput={(e) => setProb1(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "DIGITAL - AEAT",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb2(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "DIGITAL - AEAT - Hospital Admissions",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb3(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "DIGITAL - IEAT - Hospital Admissions",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb4(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "Current Pathway - AEAT",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb5(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "Current Pathway - AEAT - Hospital Admissions",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb6(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "Current Pathway - IEAT - Hospital Admissions",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
-          onInput={(e) => setProb7(e.target.value)}
-        />
-      ),
-    },
-    {
-      title: "AEAT - Dead",
-      value: (
-        <input
-          className="var-inputs"
-          type="number"
-          min="0"
-          max="1"
-          step="0.1"
+          placeholder={localStorage.getItem("tpValue: DIGITAL")}
           onInput={(e) => {
-            setProb8(e.target.value);
+            localStorage.setItem("tpValue: " + fChild(), e.target.value);
           }}
         />
       ),
     },
     {
-      title: "IEAT - Dead",
+      title: ffChild() + " - " + fChild(),
       value: (
         <input
           className="var-inputs"
@@ -271,8 +183,161 @@ export default function EditTree({
           min="0"
           max="1"
           step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + ffChild() + " - " + fChild()
+          )}
           onInput={(e) => {
-            setProb9(e.target.value);
+            localStorage.setItem(
+              "tpValue: " + ffChild() + " - " + fChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: fffChild() + " - " + ffChild() + " - " + fChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + fffChild() + " - " + ffChild() + " - " + fChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + fffChild() + " - " + ffChild() + " - " + fChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: fffChild() + " - " + fsChild() + " - " + fChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + fffChild() + " - " + fsChild() + " - " + fChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + fffChild() + " - " + fsChild() + " - " + fChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: sfChild() + " - " + sChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + sfChild() + " - " + sChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + sfChild() + " - " + sChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: sffChild() + " - " + sfChild() + " - " + sChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + sffChild() + " - " + sfChild() + " - " + sChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + sffChild() + " - " + sfChild() + " - " + sChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: sffChild() + " - " + ssChild() + " - " + sChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + sffChild() + " - " + ssChild() + " - " + sChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + sffChild() + " - " + ssChild() + " - " + sChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: sfffChild() + " - " + sfChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + sfffChild() + " - " + sfChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + sfffChild() + " - " + sfChild(),
+              e.target.value
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: ssffChild() + " - " + ssChild(),
+      value: (
+        <input
+          className="var-inputs"
+          type="number"
+          min="0"
+          max="1"
+          step="0.1"
+          placeholder={localStorage.getItem(
+            "tpValue: " + ssffChild() + " - " + ssChild()
+          )}
+          onInput={(e) => {
+            localStorage.setItem(
+              "tpValue: " + ssffChild() + " - " + ssChild(),
+              e.target.value
+            );
           }}
         />
       ),

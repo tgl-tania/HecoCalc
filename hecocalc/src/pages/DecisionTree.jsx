@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Tree from "react-d3-tree";
 import "../css/decisiontree.css";
 import treeData from "../json/treeData.json";
 import Navbar from "../components/Navbar";
-
 import EditTree from "../components/EditTree";
+import {
+  fChild,
+  ffChild,
+  fffChild,
+  fsChild,
+  sChild,
+  sfChild,
+  ssChild,
+  sffChild,
+  sfffChild,
+  ssffChild,
+} from "../data/ChildrenData";
 
 export default function TreeGraph() {
   const [editBtn, setEditBtn] = useState(true);
@@ -17,71 +28,83 @@ export default function TreeGraph() {
 
   let changedData = JSON.parse(treeDataDisplayed);
 
+  const getStorageData = (keyName, defaultValue) => {
+    const savedItem = localStorage.getItem(keyName);
+    const parsedItem = JSON.parse(savedItem);
+    return parsedItem || defaultValue;
+  };
+
+  const useLocalStorage = (keyName, initialValue) => {
+    const [value, setValue] = useState(() => {
+      return getStorageData(keyName, initialValue);
+    });
+
+    useEffect(() => {
+      localStorage.setItem(keyName, value);
+    }, [keyName, value]);
+
+    return [value, setValue];
+  };
+
   // FIRST CHILD
-  const [prob1, setProb1] = useState(
-    changedData[0].children[0].attributes.Prob
-  );
+  const [prob1, setProb1] = useLocalStorage("tpValue: DIGITAL");
 
   //First child's first child
-  const [prob2, setProb2] = useState(
-    changedData[0].children[0].children[0].attributes.Prob
+  const prob2 = localStorage.getItem(
+    "tpValue: " + ffChild() + " - " + fChild()
   );
 
   //First child's first child's first child
-  const [prob3, setProb3] = useState(
-    changedData[0].children[0].children[0].children[0].attributes.Prob
+  const prob3 = localStorage.getItem(
+    "tpValue: " + fffChild() + " - " + ffChild() + " - " + fChild()
   );
 
   //First child's second child's first child
-  const [prob4, setProb4] = useState(
-    changedData[0].children[0].children[1].children[0].attributes.Prob
+  const prob4 = localStorage.getItem(
+    "tpValue: " + fffChild() + " - " + fsChild() + " - " + fChild()
   );
 
   //Second child's first child
-  const [prob5, setProb5] = useState(
-    changedData[0].children[1].children[0].attributes.Prob
+  const prob5 = localStorage.getItem(
+    "tpValue: " + sfChild() + " - " + sChild()
   );
 
   //Second child's first child's first child
-  const [prob6, setProb6] = useState(
-    changedData[0].children[1].children[0].children[0].attributes.Prob
+  const prob6 = localStorage.getItem(
+    "tpValue: " + sffChild() + " - " + sfChild() + " - " + sChild()
   );
 
   //Second child's second child's first child
-  const [prob7, setProb7] = useState(
-    changedData[0].children[1].children[1].children[0].attributes.Prob
+  const prob7 = localStorage.getItem(
+    "tpValue: " + sffChild() + " - " + ssChild() + " - " + sChild()
   );
 
-  const [prob8, setProb8] = useState(
-    changedData[0].children[0].children[0].children[0].children[0].attributes
-      .Prob
+  //First child's first child's first child's first child
+  const prob8 = localStorage.getItem(
+    "tpValue: " + sfffChild() + " - " + sfChild()
   );
 
-  const [prob9, setProb9] = useState(
-    changedData[0].children[0].children[1].children[0].children[0].attributes
-      .Prob
+  const prob9 = localStorage.getItem(
+    "tpValue: " + ssffChild() + " - " + ssChild()
   );
 
-  const [cost1, setCost1] = useState(
-    changedData[0].children[0].attributes.Cost
-  );
-  const [cost2, setCost2] = useState(
-    changedData[0].children[0].attributes.Cost
-  );
-  const [cost3, setCost3] = useState(
-    changedData[0].children[1].attributes.Cost
-  );
-  const [cost4, setCost4] = useState(
-    changedData[0].children[0].children[0].attributes.Cost
-  );
-  const [cost5, setCost5] = useState(
-    changedData[0].children[0].attributes.Cost
-  );
+  const cost1 =
+    changedData[0].children[0].children[0].children[0].attributes.Cost;
 
-  const [days1, setDays1] = useState(1);
-  const [days2, setDays2] = useState(1);
-  const [days3, setDays3] = useState(1);
-  const [days4, setDays4] = useState(1);
+  const cost2 = changedData[0].children[0].attributes.Cost;
+
+  const cost3 = changedData[0].children[1].attributes.Cost;
+
+  const cost4 = changedData[0].children[0].children[0].attributes.Cost;
+
+  const cost5 = changedData[0].children[0].children[1].attributes.Cost;
+
+  const days1 =
+    changedData[0].children[0].children[0].children[0].attributes.days;
+  const days2 =
+    changedData[0].children[0].children[1].children[0].attributes.days;
+  const days3 = changedData[0].children[0].children[0].attributes.days;
+  const days4 = changedData[0].children[0].children[1].attributes.days;
 
   //------------------------First Child------------------------
   changedData[0].children[0].attributes.Prob = prob1;
@@ -185,12 +208,18 @@ export default function TreeGraph() {
   changedData[0].children[0].children[1].attributes.Cost = cost5 * days4;
   changedData[0].children[1].children[1].attributes.Cost = cost5 * days4;
 
-  treeDataDisplayed = JSON.stringify(changedData);
-
   const [open, setOpen] = useState(false);
+
+  treeDataDisplayed = JSON.stringify(changedData);
 
   const toggleNav = () => {
     setOpen(!open);
+  };
+
+  const toggleRefresh = () => {
+    if (open === true) {
+      window.location.reload(false);
+    }
   };
 
   return (
@@ -213,32 +242,13 @@ export default function TreeGraph() {
         <button
           className={editBtn ? "edit-btn" : "update-btn"}
           onClick={() => {
+            toggleRefresh();
             toggleNav();
             toggleEditButton();
           }}
         ></button>
         <div id="sidebar" className={open ? "" : "collapse"}>
-          <EditTree
-            open={open}
-            setCost1={setCost1}
-            setCost2={setCost2}
-            setCost3={setCost3}
-            setCost4={setCost4}
-            setCost5={setCost5}
-            setDays1={setDays1}
-            setDays2={setDays2}
-            setDays3={setDays3}
-            setDays4={setDays4}
-            setProb1={setProb1}
-            setProb2={setProb2}
-            setProb3={setProb3}
-            setProb4={setProb4}
-            setProb5={setProb5}
-            setProb6={setProb6}
-            setProb7={setProb7}
-            setProb8={setProb8}
-            setProb9={setProb9}
-          />
+          <EditTree open={open} prob1={prob1} setProb1={setProb1} />
         </div>
       </div>
     </>

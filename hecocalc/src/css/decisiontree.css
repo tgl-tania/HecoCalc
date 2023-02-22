@@ -87,6 +87,10 @@
   fill: rgb(62, 212, 62);
 }
 
-.node__branch .rd3t-label__attributes tspan:last-of-type {
+.node__branch .rd3t-label__attributes tspan:nth-of-type(2) {
   fill: red;
+}
+
+.node__branch .rd3t-label__attributes tspan:nth-of-type(3) {
+  display: none;
 }

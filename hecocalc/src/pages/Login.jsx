@@ -59,7 +59,8 @@ function Login() {
       },
 
       onFailure: (err) => {
-        console.error("onFailure:", err);
+        console.log("Error Test");
+        console.log(err);
       },
     });
   };
