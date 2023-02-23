@@ -8,12 +8,15 @@ import RunSimulations from "../components/RunSimulations";
 import Navbar from "../components/Navbar";
 import "../css/dashboard.css";
 
-function GraphsDashboard() {
+function GraphsDashboard({ iterationNum, setIterationNum }) {
   return (
     <>
       <Navbar />
       <div>
-        <RunSimulations />
+        <RunSimulations
+          iterationNum={iterationNum}
+          setIterationNum={setIterationNum}
+        />
       </div>
       <div className="DashBoard">
         <div className="InputScreen">
@@ -32,15 +35,15 @@ function GraphsDashboard() {
       </div>
       <div className="GridLineAndScatter">
         <div className="grid-itemscatter">
-        <ScatterPlot />
+          <ScatterPlot />
         </div>
         <div className="grid-itemline">
-        <Linechart />
+          <Linechart />
         </div>
         {/* <h1 className="heading">One-way sensitivity analysis</h1> */}
-        <hr className="horizontalLine"/>
+        <hr className="horizontalLine" />
       </div>
-      
+
       <div className="grid-itemtornado">
         <Tornado />
       </div>

@@ -13,7 +13,7 @@ function Login() {
   const [error,setError] = useState(false);
 
   const navigateToHome = () => {
-    navigate("/");
+    navigate("/dashboard");
   };
 
   let style;
@@ -72,6 +72,7 @@ function Login() {
       onSuccess: function (result) {
         setError(false);
         console.log("SUCCESS");
+        navigateToHome();
         var accessToken = result.getAccessToken().getJwtToken();
 
         var idToken = result.idToken.jwtToken;
