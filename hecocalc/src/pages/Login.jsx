@@ -10,10 +10,50 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error,setError] = useState(false);
 
   const navigateToHome = () => {
     navigate("/");
   };
+
+  let style;
+  if(!error){
+     style = {
+        "& label.Mui-focused": {
+          borderBottomcolor: '#FF931E',
+          color:'#FF931E',
+        },
+        "& .MuiInput-underline:after": {
+          borderBottomColor: '#FF931E'
+        },
+        
+      
+    }
+  }
+  else{
+     style = {
+      "& .MuiFormLabel-root":{
+        color:'#E50000'
+
+      },
+      "& label.MuiFormLabel-root.Mui-focused":{
+        color:'#FF931E'
+
+      },
+      
+      "& .MuiInput-underline:after": {
+        borderBottomColor: '#FF931E',
+        color:'black'
+      },
+      "& .MuiInput-underline:before": {
+        borderBottomColor: '#E50000',
+        color:'black'
+      },
+      
+    
+  }
+  }
+  
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +70,7 @@ function Login() {
 
     user.authenticateUser(authDetails, {
       onSuccess: function (result) {
+        setError(false);
         console.log("SUCCESS");
         var accessToken = result.getAccessToken().getJwtToken();
 
@@ -61,6 +102,9 @@ function Login() {
       onFailure: (err) => {
         console.log("Error Test");
         console.log(err);
+        setError(true);
+        setEmail("");
+        setPassword("");
       },
     });
   };
@@ -87,6 +131,7 @@ function Login() {
               variant="standard"
               size="50px"
               value={email}
+              sx={style}
               onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
@@ -94,6 +139,7 @@ function Login() {
               label="Enter Password..."
               variant="standard"
               value={password}
+              sx={style}
               onChange={(event) => setPassword(event.target.value)}
             />
             <button className="loginButton" type="submit" onClick={onSubmit}>
