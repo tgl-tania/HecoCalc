@@ -15,6 +15,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/loginsettings" element={<LoginSettings />} />
         <Route
           path="/dashboard"
           element={
