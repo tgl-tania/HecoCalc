@@ -78,33 +78,37 @@ function Login() {
             return;
           }
           console.log(userData);
+          
+          let bucket = userData.UserAttributes[4].Value;
+          console.log(bucket);
+          var idToken = result.idToken.jwtToken;
+  
+          AWS.config.region = "eu-west-2";
+          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: "eu-west-2:fca66400-f2b5-4b3b-bee7-2d01ea34e734",
+            Logins: {
+              "cognito-idp.eu-west-2.amazonaws.com/eu-west-2_FfGgfMElM": idToken,
+            },
+          });
+  
+          AWS.config.credentials.get(function (err) {
+            if (err) return console.error(err);
+            else console.log(AWS.config.credentials);
+  
+            var s3 = new AWS.S3({
+              apiVersion: "2006-03-01",
+              params: { Bucket: bucket },
+            });
+  
+            s3.listObjects({ Delimiter: "/" }, function (err, data) {
+              console.log(err, data);
+            });
+          });
+          navigate("/loginsettings");
+
+
         });
         // navigateToHome();
-        var accessToken = result.getAccessToken().getJwtToken();
-
-        var idToken = result.idToken.jwtToken;
-
-        AWS.config.region = "eu-west-2";
-        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: "eu-west-2:fca66400-f2b5-4b3b-bee7-2d01ea34e734",
-          Logins: {
-            "cognito-idp.eu-west-2.amazonaws.com/eu-west-2_D4H1dwVyg": idToken,
-          },
-        });
-
-        AWS.config.credentials.get(function (err) {
-          if (err) return console.error(err);
-          else console.log(AWS.config.credentials);
-
-          var s3 = new AWS.S3({
-            apiVersion: "2006-03-01",
-            params: { Bucket: "alancompany" },
-          });
-
-          s3.listObjects({ Delimiter: "/" }, function (err, data) {
-            console.log(err, data);
-          });
-        });
       },
 
       onFailure: (err) => {

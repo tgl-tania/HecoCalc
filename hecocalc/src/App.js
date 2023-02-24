@@ -6,6 +6,7 @@ import Uploads from "./pages/Uploads";
 import GenerateTree from "./pages/GenerateTree";
 import InputPage from "./components/InputPage";
 import Simulation from "./pages/Simulation";
+import LoginSettings from "./pages/SettingsPage";
 import { useState } from "react";
 
 function App() {
