@@ -72,7 +72,14 @@ function Login() {
       onSuccess: function (result) {
         setError(false);
         console.log("SUCCESS");
-        navigateToHome();
+        user.getUserData(function(err, userData) {
+          if (err) {
+            alert(err.message || JSON.stringify(err));
+            return;
+          }
+          console.log(userData);
+        });
+        // navigateToHome();
         var accessToken = result.getAccessToken().getJwtToken();
 
         var idToken = result.idToken.jwtToken;
