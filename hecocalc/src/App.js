@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />}>
         <Route path="/loginsettings" element={<LoginSettings />} />
         <Route
           path="/dashboard"
@@ -32,6 +32,7 @@ function App() {
           path="/simulation"
           element={<Simulation iterationNum={iterationNum} />}
         />
+        </Route>
       </Routes>
     </Router>
   );
