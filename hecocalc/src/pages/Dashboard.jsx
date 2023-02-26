@@ -8,7 +8,18 @@ import RunSimulations from "../components/RunSimulations";
 import Navbar from "../components/Navbar";
 import "../css/dashboard.css";
 
-function GraphsDashboard({ iterationNum, setIterationNum }) {
+function GraphsDashboard({
+  iterationNum,
+  setIterationNum,
+  digitalProbability,
+  setDigitalProbability,
+  appropriateTreatment,
+  setAppropriateTreatment,
+  hospitalWithDigital,
+  setHospitalWithDigital,
+  serviceWithDigital,
+  setServiceWithDigital,
+}) {
   return (
     <>
       <Navbar />
@@ -20,7 +31,16 @@ function GraphsDashboard({ iterationNum, setIterationNum }) {
       </div>
       <div className="DashBoard">
         <div className="InputScreen">
-          <InputScreen />
+          <InputScreen
+            digitalProbability={digitalProbability}
+            setDigitalProbability={setDigitalProbability}
+            appropriateTreatment={appropriateTreatment}
+            setAppropriateTreatment={setAppropriateTreatment}
+            hospitalWithDigital={hospitalWithDigital}
+            setHospitalWithDigital={setHospitalWithDigital}
+            serviceWithDigital={serviceWithDigital}
+            setServiceWithDigital={setServiceWithDigital}
+          />
         </div>
         <div className="DeterministicResults">
           <div className="Results">
@@ -44,9 +64,9 @@ function GraphsDashboard({ iterationNum, setIterationNum }) {
         <hr className="horizontalLine" />
       </div>
 
-      <div className="grid-itemtornado">
+      {/* <div className="grid-itemtornado">
         <Tornado />
-      </div>
+      </div> */}
     </>
   );
 }

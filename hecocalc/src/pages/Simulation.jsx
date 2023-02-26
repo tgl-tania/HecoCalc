@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/simulation.css";
 
-export default function Simulation({ iterationNum }) {
+export default function Simulation({ iterationNum, digitalProbability }) {
   var { jStat } = require("jstat");
   const iterations = [];
   const dCosts = [];
@@ -12,7 +12,11 @@ export default function Simulation({ iterationNum }) {
   for (let i = 1; i <= iterationNum; i++) {
     iterations.push(i);
     dCosts.push(
-      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 2563.41 * 100) / 100
+      Math.round(
+        jStat.beta.inv(Math.random(), digitalProbability * 10, 190) *
+          2563.41 *
+          100
+      ) / 100
     );
     dQals.push(
       Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.547 * 1000) / 1000
