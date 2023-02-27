@@ -1,10 +1,9 @@
 import "./App.css";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import Pool from "./UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import AWS from "aws-sdk";
-
 
 function App() {
     var repoName = "";
@@ -14,38 +13,36 @@ function App() {
         const user = new CognitoUser({Username,Pool});
         const authDetails = new AuthenticationDetails({Username,Password});
 
-        user.authenticateUser(authDetails, {
-          onSuccess: function (result) {
-            console.log(result);
-            resolve(result);
-            // navigateToHome();
-          },
+      user.authenticateUser(authDetails, {
+        onSuccess: function (result) {
+          console.log(result);
+          resolve(result);
+          // navigateToHome();
+        },
 
-          onFailure: (err) => {
-            console.log("Error Test");
-            console.log(err);
-            reject(err);
-          },
-        });
-      })
-    
+        onFailure: (err) => {
+          console.log("Error Test");
+          console.log(err);
+          reject(err);
+        },
+      });
+    });
   };
 
-  const getRepo = () =>{
+  const getRepo = () => {
     return repositories;
-  }
+  };
 
   const getSession = async () => {
-    return await new Promise((resolve,reject) => {
+    return await new Promise((resolve, reject) => {
       const user = Pool.getCurrentUser();
-      if (user){
-        user.getSession((err,session) => {
-          if(err){
+      if (user) {
+        user.getSession((err, session) => {
+          if (err) {
             reject();
-          }
-          else{
+          } else {
             resolve(session);
-            user.getUserData(function(err, userData) {
+            user.getUserData(function (err, userData) {
               if (err) {
                 alert(err.message || JSON.stringify(err));
                 return;
@@ -53,69 +50,64 @@ function App() {
               console.log(userData);
             });
           }
-        })
-      }
-      else{
+        });
+      } else {
         reject();
       }
-    })
-  }
+    });
+  };
 
   const getRepositories = async () => {
-    return await new Promise((resolve,reject) => {
+    return await new Promise((resolve, reject) => {
       const user = Pool.getCurrentUser();
-      if (user){
-        user.getSession((err,session) => {
-          if(err){
+      if (user) {
+        user.getSession((err, session) => {
+          if (err) {
             reject();
-          }
-          else{
-            user.getUserData(function(err, userData) {
+          } else {
+            user.getUserData(function (err, userData) {
               if (err) {
                 alert(err.message || JSON.stringify(err));
                 return;
               }
-                var bucket = userData.UserAttributes[4].Value;
-                var idToken = session.idToken.jwtToken;
-        
-                AWS.config.region = "eu-west-2";
-                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                  IdentityPoolId: "eu-west-2:fca66400-f2b5-4b3b-bee7-2d01ea34e734",
-                  Logins: {
-                    "cognito-idp.eu-west-2.amazonaws.com/eu-west-2_FfGgfMElM": idToken,
-                  },
+              var bucket = userData.UserAttributes[4].Value;
+              var idToken = session.idToken.jwtToken;
+
+              AWS.config.region = "eu-west-2";
+              AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId:
+                  "eu-west-2:fca66400-f2b5-4b3b-bee7-2d01ea34e734",
+                Logins: {
+                  "cognito-idp.eu-west-2.amazonaws.com/eu-west-2_FfGgfMElM":
+                    idToken,
+                },
+              });
+              AWS.config.credentials.get(function (err) {
+                if (err) return console.error(err);
+                else console.log(AWS.config.credentials);
+
+                var s3 = new AWS.S3({
+                  apiVersion: "2006-03-01",
+                  params: { Bucket: bucket },
                 });
-                AWS.config.credentials.get(function (err) {
-                    if (err) return console.error(err);
-                    else console.log(AWS.config.credentials);
-            
-                    var s3 = new AWS.S3({
-                      apiVersion: "2006-03-01",
-                      params: { Bucket: bucket },
-                    });
-            
-                    s3.listObjects({ Delimiter: "", Prefix: 'Repositories/'}, function (err, data) {
-                      repositories = data.Contents;
-                      resolve(repositories);
-                    });
 
-                  }) 
-              
-
+                s3.listObjects(
+                  { Delimiter: "", Prefix: "Repositories/" },
+                  function (err, data) {
+                    repositories = data.Contents;
+                    resolve(repositories);
+                  }
+                );
+              });
             });
           }
-        })
-      }
-      else{
+        });
+      } else {
         reject();
       }
-    })
+    });
+  };
 
-  }
-
-
-
-  
   return (
     <div>
     <main>
@@ -129,7 +121,6 @@ function App() {
       }}/>
     </main>
     </div>
-    
   );
 }
 

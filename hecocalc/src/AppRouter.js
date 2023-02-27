@@ -9,35 +9,53 @@ import LoginSettings from "./pages/SettingsPage";
 import { useState } from "react";
 import App from "./App";
 
-
-function AppRouter(){
+function AppRouter() {
   const [iterationNum, setIterationNum] = useState(0);
-    return(
-        <Router>
-        <Routes>
+  const [digitalProbability, setDigitalProbability] = useState(
+    localStorage.getItem("tpValue: DIGITAL") * 100
+  );
+  const [appropriateTreatment, setAppropriateTreatment] = useState(0);
+  const [hospitalWithDigital, setHospitalWithDigital] = useState(0);
+  const [serviceWithDigital, setServiceWithDigital] = useState(0);
+  return (
+    <Router>
+      <Routes>
         <Route path="/" element={<App />}>
-        <Route index element={<Login />}/>
-        <Route path="/loginsettings" element={<LoginSettings />} />
-        <Route
-          path="/dashboard"
-          element={
-            <Dashboard
-              iterationNum={iterationNum}
-              setIterationNum={setIterationNum}
-            />
-          }
-        />
-        <Route path="/uploads" element={<Uploads />} />
-        <Route path="/generatetree" element={<GenerateTree />} />
-        <Route path="/input-page" element={<InputPage />} />
-        <Route
-          path="/simulation"
-          element={<Simulation iterationNum={iterationNum} />}
-        />
+          <Route index element={<Login />} />
+          <Route path="/loginsettings" element={<LoginSettings />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                iterationNum={iterationNum}
+                setIterationNum={setIterationNum}
+                digitalProbability={digitalProbability}
+                setDigitalProbability={setDigitalProbability}
+                appropriateTreatment={appropriateTreatment}
+                setAppropriateTreatment={setAppropriateTreatment}
+                hospitalWithDigital={hospitalWithDigital}
+                setHospitalWithDigital={setHospitalWithDigital}
+                serviceWithDigital={serviceWithDigital}
+                setServiceWithDigital={setServiceWithDigital}
+              />
+            }
+          />
+          <Route path="/uploads" element={<Uploads />} />
+          <Route path="/generatetree" element={<GenerateTree />} />
+          <Route path="/input-page" element={<InputPage />} />
+          <Route
+            path="/simulation"
+            element={
+              <Simulation
+                iterationNum={iterationNum}
+                digitalProbability={digitalProbability}
+              />
+            }
+          />
         </Route>
       </Routes>
     </Router>
-    )
+  );
 }
 
 export default AppRouter;

@@ -35,7 +35,7 @@ p {
   font-weight: 400;
 }
 
-.input-group input[type="text"] {
+.input-group input[type="number"] {
   background-color: #f8f8f8;
   border: none;
   border-radius: 3.5px;

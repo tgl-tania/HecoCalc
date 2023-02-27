@@ -1,70 +1,89 @@
-import React from 'react';
-import '../css/inputscreen.css';
+import React, { useState } from "react";
+import "../css/inputscreen.css";
 
-class InputScreen extends React.Component {
-  state = {
-    digitalProbability: '14%',
-    appropriateTreatment: '14%',
-    hospitalWithDigital: '14%',
-    serviceWithDigital: '14%',
+export default function InputScreen({
+  digitalProbability,
+  setDigitalProbability,
+  appropriateTreatment,
+  setAppropriateTreatment,
+  hospitalWithDigital,
+  setHospitalWithDigital,
+  serviceWithDigital,
+  setServiceWithDigital,
+}) {
+  const handleChange = (e, change, item) => {
+    change(e.target.value);
+    localStorage.setItem("tpValue: " + item, e.target.value / 100);
   };
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />         
-        <h1>MODEL INPUT PARAMETERS</h1>
-        <div className="container">          
-          <div className="input-group">
-            <p>Digital Probability</p>
-            <h4> </h4> {/*Just to match the spacing on screen*/}
-            <h4> </h4>
+  return (
+    <div className="input-screen-container">
+      <h1>MODEL INPUT PARAMETERS</h1>
+      <div className="container">
+        <div className="input-group">
+          <p>Digital Probability</p>
+          <h4> </h4> {/*Just to match the spacing on screen*/}
+          <h4> </h4>
+          <div className="input-cont">
             <input
-              type="text"
+              type="number"
+              max={100}
+              min={0}
               name="digitalProbability"
-              value={this.state.digitalProbability}
-              onChange={this.handleChange}
+              value={digitalProbability}
+              onChange={(e) =>
+                handleChange(e, setDigitalProbability, "DIGITAL")
+              }
             />
+            %
           </div>
-          <div className="input-group">
-            <p>Appropriate Treatment with Digital%</p>
+        </div>
+        <div className="input-group">
+          <p>Appropriate Treatment with Digital%</p>
+          <div className="input-cont">
             <input
-              type="text"
+              type="number"
+              max={100}
+              min={0}
               name="appropriateTreatment"
-              value={this.state.appropriateTreatment}
-              onChange={this.handleChange}
+              value={appropriateTreatment}
+              onChange={(e) => setAppropriateTreatment(e.target.value)}
             />
+            %
           </div>
-          <div className="input-group">
-            <p>Hospital with Digital%</p>
-            <h4>   </h4>{/*Just to match the spacing on screen*/}
+        </div>
+        <div className="input-group">
+          <p>Hospital with Digital%</p>
+          <h4> </h4>
+          {/*Just to match the spacing on screen*/}
+          <div className="input-cont">
             <input
-              type="text"
+              type="number"
+              max={100}
+              min={0}
               name="hospitalWithDigital"
-              value={this.state.hospitalWithDigital}
-              onChange={this.handleChange}
+              value={hospitalWithDigital}
+              onChange={(e) => setHospitalWithDigital(e.target.value)}
             />
+            %
           </div>
-          <div className="input-group">
-            <p>Service with Digital%</p>
-            <h4>   </h4>{/*Just to match the spacing on screen*/}
+        </div>
+        <div className="input-group">
+          <p>Service with Digital%</p>
+          <h4> </h4>
+          {/*Just to match the spacing on screen*/}
+          <div className="input-cont">
             <input
-              type="text"
+              type="number"
+              max={100}
+              min={0}
               name="serviceWithDigital"
-              value={this.state.serviceWithDigital}
-              onChange={this.handleChange}
+              value={serviceWithDigital}
+              onChange={(e) => setServiceWithDigital(e.target.value)}
             />
+            %
           </div>
-        </div>        
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default InputScreen;
