@@ -6,11 +6,12 @@ import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import AWS from "aws-sdk";
 
 function App() {
-  var repositories = [];
-  const authenticate = async (Username, Password) => {
-    return await new Promise((resolve, reject) => {
-      const user = new CognitoUser({ Username, Pool });
-      const authDetails = new AuthenticationDetails({ Username, Password });
+    var repoName = "";
+    var repositories = [];
+    const authenticate = async (Username,Password) => {
+      return await new Promise((resolve, reject) => {
+        const user = new CognitoUser({Username,Pool});
+        const authDetails = new AuthenticationDetails({Username,Password});
 
       user.authenticateUser(authDetails, {
         onSuccess: function (result) {
@@ -109,17 +110,16 @@ function App() {
 
   return (
     <div>
-      <main>
-        <Outlet
-          context={{
-            authenticate: authenticate,
-            getSession: getSession,
-            getRepositories: getRepositories,
-            repositories: repositories,
-            getRepo: getRepo,
-          }}
-        />
-      </main>
+    <main>
+      <Outlet context={{
+        authenticate: authenticate,
+        getSession: getSession,
+        getRepositories: getRepositories,
+        repositories: repositories,
+        getRepo: getRepo,
+        repoName: repoName,
+      }}/>
+    </main>
     </div>
   );
 }
