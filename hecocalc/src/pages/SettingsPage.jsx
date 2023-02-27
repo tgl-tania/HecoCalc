@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "../UserPool";
 import "../css/loginsettings.css";
+import { useState } from "react";
 
 
 
@@ -10,8 +11,8 @@ import "../css/loginsettings.css";
 export default function Settings(){
 
     const getRepo = useOutletContext().getRepo;
+    var repoName = useOutletContext().repoName;
     var repositories = getRepo();
-    console.log(repositories);
     var choices = [];
     repositories.map(item => {
         let arr = item.Key.split('/');
@@ -22,6 +23,18 @@ export default function Settings(){
         }
     })
 
+    const submitSettings = (event) => {
+        event.preventDefault();
+        console.log(repoName);
+
+    }
+
+    const selectValue = (event) => {
+        repoName = event.target.value;
+    }
+
+
+
     
     return(
         <div>
@@ -29,13 +42,14 @@ export default function Settings(){
             <br></br>
             <div className="login-settings-form-div">
             <form>
-                <select>
+                <select onChange={selectValue}>
                 {choices.map(item => {
                 return(
                     <option value={item}>{item}</option>
                 )
             })}
                 </select>
+                <input type="submit" value="Continue" onClick={submitSettings} />
             </form>
             </div>
         </div>

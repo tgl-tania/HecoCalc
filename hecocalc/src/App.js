@@ -7,6 +7,7 @@ import AWS from "aws-sdk";
 
 
 function App() {
+    var repoName = "";
     var repositories = [];
     const authenticate = async (Username,Password) => {
       return await new Promise((resolve, reject) => {
@@ -124,6 +125,7 @@ function App() {
         getRepositories: getRepositories,
         repositories: repositories,
         getRepo: getRepo,
+        repoName: repoName,
       }}/>
     </main>
     </div>
