@@ -6,6 +6,7 @@ import GenerateTree from "./pages/GenerateTree";
 import InputPage from "./components/InputPage";
 import Simulation from "./pages/Simulation";
 import LoginSettings from "./pages/SettingsPage";
+import Snapshots from "./pages/Snapshots";
 import { useState } from "react";
 import App from "./App";
 
@@ -53,6 +54,7 @@ function AppRouter() {
             }
           />
         </Route>
+        <Route path='/snapshots' element={<Snapshots/>} />
       </Routes>
     </Router>
   );
