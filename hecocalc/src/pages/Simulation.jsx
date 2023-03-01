@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/simulation.css";
+import ScatterPlot from "../components/ScatterPlot";
 
 export default function Simulation({ iterationNum, digitalProbability }) {
   var { jStat } = require("jstat");
@@ -8,26 +9,36 @@ export default function Simulation({ iterationNum, digitalProbability }) {
   const dQals = [];
   const cpCosts = [];
   const cpQals = [];
+  const data = [];
 
   for (let i = 1; i <= iterationNum; i++) {
+    var dcosts =Math.round(
+      jStat.beta.inv(Math.random(), digitalProbability * 10, 190) *
+        2563.41 *
+        100
+    ) / 100;
+    var dqals = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.547 * 1000) / 1000;
+    var cpcosts = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 525.12 * 100) / 100;
+    var cpqals = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.135 * 1000) / 1000;
     iterations.push(i);
     dCosts.push(
-      Math.round(
-        jStat.beta.inv(Math.random(), digitalProbability * 10, 190) *
-          2563.41 *
-          100
-      ) / 100
+      dcosts
     );
     dQals.push(
-      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.547 * 1000) / 1000
+      dqals
     );
     cpCosts.push(
-      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 525.12 * 100) / 100
+      cpcosts
     );
     cpQals.push(
-      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.135 * 1000) / 1000
+      cpqals
     );
+    data.push({
+      "COST": dcosts,
+      "QALYs": dqals
+    })
   }
+  
 
   return (
     <div className="trials-container">
@@ -68,6 +79,9 @@ export default function Simulation({ iterationNum, digitalProbability }) {
           {cpQals.map((qal) => {
             return <div>{qal}</div>;
           })}
+        </div>
+        <div className="Scatter-Plot">
+          {ScatterPlot(data)}
         </div>
       </div>
     </div>
