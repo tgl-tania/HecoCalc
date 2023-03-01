@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/inputpage.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import treeData from "../json/treeData.json";
 import {
   fChild,
   ffChild,
@@ -23,9 +22,7 @@ export default function TableOption2() {
     navigate(route);
   };
 
-  let treeDataDisplayed = JSON.stringify(treeData);
-
-  let changedData = JSON.parse(treeDataDisplayed);
+  var { jStat } = require("jstat");
 
   const valueVar = "Value";
   const probVar = "Probabilistic";
@@ -37,8 +34,6 @@ export default function TableOption2() {
   const alphaVar = "Alpha";
   const betaVar = "Beta";
   const nVar = "N";
-
-  console.log(changedData);
 
   const transitionProb = [
     {
@@ -101,11 +96,75 @@ export default function TableOption2() {
 
   const [value, setValue] = useState(transitionProb);
 
+  const [alpha, setAlpha] = useState(
+    transitionProb.map((item) => {
+      return (
+        localStorage.getItem("tpValue: " + item.name) *
+        localStorage.getItem("tpN: " + item.name)
+      );
+    })
+  );
+
+  const [beta, setBeta] = useState(
+    transitionProb.map((item, key) => {
+      return parseInt(localStorage.getItem("tpN: " + item.name)) - alpha[key];
+    })
+  );
+
+  const [alphaChange, setAlphaChange] = useState(
+    transitionProb.map((item) => {
+      return (
+        localStorage.getItem("tpValue: " + item.name) *
+        localStorage.getItem("tpN: " + item.name)
+      );
+    })
+  );
+
   const handleValues = (e, index, name, label) => {
     const values = [...value];
     values[index].value = e.target.value;
     setValue(values);
     localStorage.setItem(label + ": " + name, e.target.value);
+  };
+
+  const [probValue, setProbValue] = useState(
+    transitionProb.map((item, key) => {
+      return jStat.beta.inv(Math.random(), alphaChange[key], beta[key]);
+    })
+  );
+
+  const [lciVal, setLciVal] = useState(
+    transitionProb.map((item, key) => {
+      return jStat.beta.inv(0.025, alphaChange[key], beta[key]);
+    })
+  );
+
+  const updateValues = () => {
+    setAlpha(
+      transitionProb.map((item) => {
+        return (
+          localStorage.getItem("tpValue: " + item.name) *
+          localStorage.getItem("tpN: " + item.name)
+        );
+      })
+    );
+    setBeta(
+      transitionProb.map((item, key) => {
+        return (
+          parseInt(localStorage.getItem("tpN: " + item.name)) - alphaChange[key]
+        );
+      })
+    );
+    setLciVal(
+      transitionProb.map((item, key) => {
+        return jStat.beta.inv(0.025, alphaChange[key], beta[key]);
+      })
+    );
+    setProbValue(
+      transitionProb.map((item, key) => {
+        return jStat.beta.inv(Math.random(), alphaChange[key], beta[key]);
+      })
+    );
   };
 
   return (
@@ -141,7 +200,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       placeholder={localStorage.getItem(
                         "tpValue: " + item.name
                       )}
@@ -156,15 +218,13 @@ export default function TableOption2() {
             </div>
             <div className="variables">
               <label htmlFor="">{probVar}</label>
-              {transitionProb.map((item) => {
+              {probValue.map((item) => {
                 return (
                   <div>
                     <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpProbabilistic")
-                      }
+                      type="number"
+                      value={Math.round(item * 1000) / 1000}
+                      readOnly={true}
                     />
                   </div>
                 );
@@ -176,11 +236,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpDeterministic")
-                      }
+                      type="number"
+                      value={localStorage.getItem("tpValue: " + item.name)}
+                      readOnly={true}
                     />
                   </div>
                 );
@@ -192,7 +250,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "tpSe")
@@ -204,15 +265,13 @@ export default function TableOption2() {
             </div>
             <div className="variables">
               <label htmlFor="">{lciVar}</label>
-              {transitionProb.map((item) => {
+              {lciVal.map((item) => {
                 return (
                   <div>
                     <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpLci")
-                      }
+                      type="number"
+                      readOnly={true}
+                      value={Math.round(item * 1000) / 1000}
                     />
                   </div>
                 );
@@ -223,13 +282,7 @@ export default function TableOption2() {
               {transitionProb.map((item) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpUci")
-                      }
-                    />
+                    <input type="number" readOnly={true} value={value.prob} />
                   </div>
                 );
               })}
@@ -239,44 +292,30 @@ export default function TableOption2() {
               {transitionProb.map((item) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpDistribution")
-                      }
-                    />
+                    <input value="Beta" readOnly={true} />
                   </div>
                 );
               })}
             </div>
             <div className="variables">
               <label htmlFor="">{alphaVar}</label>
-              {transitionProb.map((item) => {
+              {alpha.map((alpha) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpAlpha")
-                      }
-                    />
+                    <input value={alpha} readOnly={true} />
                   </div>
                 );
               })}
             </div>
             <div className="variables">
               <label htmlFor="">{betaVar}</label>
-              {transitionProb.map((item) => {
+              {beta.map((b) => {
                 return (
                   <div>
                     <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpBeta")
-                      }
+                      type="number"
+                      value={Math.round(b * 1000) / 1000}
+                      readOnly={true}
                     />
                   </div>
                 );
@@ -288,11 +327,21 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      placeholder={localStorage.getItem("tpN: " + item.name)}
                       value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "tpN")
-                      }
+                      onChange={(e) => {
+                        handleValues(e, item.id, item.name, "tpN");
+                        setAlphaChange(
+                          transitionProb.map((item) => {
+                            return (
+                              localStorage.getItem("tpValue: " + item.name) *
+                              localStorage.getItem("tpN: " + item.name)
+                            );
+                          })
+                        );
+                        // handleAlphaBeta(item);
+                      }}
                     />
                   </div>
                 );
@@ -300,6 +349,7 @@ export default function TableOption2() {
             </div>
           </div>
         </div>
+        <button onClick={() => updateValues()}>Update</button>
 
         <div className="table">
           <div className="columns">
@@ -321,7 +371,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uValue")
@@ -337,7 +390,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uProbabilistic")
@@ -353,7 +409,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uDeterministic")
@@ -369,7 +428,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uSe")
@@ -385,7 +447,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uLci")
@@ -401,7 +466,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uUci")
@@ -417,7 +485,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uDistribution")
@@ -433,7 +504,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uAlpha")
@@ -449,7 +523,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "uBeta")
@@ -464,13 +541,7 @@ export default function TableOption2() {
               {utilities.map((item) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "uN")
-                      }
-                    />
+                    <input value="-" readOnly={true} />
                   </div>
                 );
               })}
@@ -498,7 +569,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={10}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cValue")
@@ -514,7 +587,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={10}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cProbabilistic")
@@ -530,7 +605,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cDeterministic")
@@ -546,7 +623,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cSe")
@@ -562,7 +641,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cLci")
@@ -578,7 +659,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cUci")
@@ -610,7 +693,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cAlpha")
@@ -626,7 +711,9 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "cBeta")
@@ -641,13 +728,7 @@ export default function TableOption2() {
               {costs.map((item) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "cN")
-                      }
-                    />
+                    <input value="-" readOnly={true} />
                   </div>
                 );
               })}
@@ -675,7 +756,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eValue")
@@ -691,7 +775,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eProbabilistic")
@@ -707,7 +794,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eDeterministic")
@@ -723,7 +813,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eSe")
@@ -739,7 +832,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eLci")
@@ -755,7 +851,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eUci")
@@ -771,7 +870,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eDistribution")
@@ -787,7 +889,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eAlpha")
@@ -803,7 +908,10 @@ export default function TableOption2() {
                 return (
                   <div>
                     <input
-                      type="text"
+                      type="number"
+                      step={0.1}
+                      min={0}
+                      max={1}
                       value={value.prob}
                       onChange={(e) =>
                         handleValues(e, item.id, item.name, "eBeta")
@@ -818,13 +926,7 @@ export default function TableOption2() {
               {days.map((item) => {
                 return (
                   <div>
-                    <input
-                      type="text"
-                      value={value.prob}
-                      onChange={(e) =>
-                        handleValues(e, item.id, item.name, "eN")
-                      }
-                    />
+                    <input value="-" readOnly={true} />
                   </div>
                 );
               })}

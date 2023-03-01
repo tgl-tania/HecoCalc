@@ -15,7 +15,9 @@ function AppRouter() {
   const [digitalProbability, setDigitalProbability] = useState(
     localStorage.getItem("tpValue: DIGITAL") * 100
   );
-  const [appropriateTreatment, setAppropriateTreatment] = useState(0);
+  const [appropriateTreatment, setAppropriateTreatment] = useState(
+    localStorage.getItem("tpValue: AEAT - DIGITAL") * 100
+  );
   const [hospitalWithDigital, setHospitalWithDigital] = useState(0);
   const [serviceWithDigital, setServiceWithDigital] = useState(0);
   return (

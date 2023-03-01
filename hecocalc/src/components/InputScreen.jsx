@@ -46,7 +46,9 @@ export default function InputScreen({
               min={0}
               name="appropriateTreatment"
               value={appropriateTreatment}
-              onChange={(e) => setAppropriateTreatment(e.target.value)}
+              onChange={(e) =>
+                handleChange(e, setAppropriateTreatment, "AEAT - DIGITAL")
+              }
             />
             %
           </div>

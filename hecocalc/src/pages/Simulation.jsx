@@ -9,36 +9,35 @@ export default function Simulation({ iterationNum, digitalProbability }) {
   const dQals = [];
   const cpCosts = [];
   const cpQals = [];
+  const iCosts = [];
+  const iQals = [];
   const data = [];
 
   for (let i = 1; i <= iterationNum; i++) {
-    var dcosts =Math.round(
-      jStat.beta.inv(Math.random(), digitalProbability * 10, 190) *
-        2563.41 *
-        100
-    ) / 100;
-    var dqals = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.547 * 1000) / 1000;
-    var cpcosts = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 525.12 * 100) / 100;
-    var cpqals = Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.135 * 1000) / 1000;
+    var dcosts =
+      Math.round(
+        jStat.beta.inv(Math.random(), digitalProbability * 10, 190) *
+          2563.41 *
+          100
+      ) / 100;
+    var dqals =
+      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.547 * 1000) / 1000;
+    var cpcosts =
+      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 525.12 * 100) / 100;
+    var cpqals =
+      Math.round(jStat.beta.inv(Math.random(), 810, 190) * 0.135 * 1000) / 1000;
     iterations.push(i);
-    dCosts.push(
-      dcosts
-    );
-    dQals.push(
-      dqals
-    );
-    cpCosts.push(
-      cpcosts
-    );
-    cpQals.push(
-      cpqals
-    );
+    dCosts.push(dcosts);
+    dQals.push(dqals);
+    cpCosts.push(cpcosts);
+    cpQals.push(cpqals);
     data.push({
-      "COST": dcosts,
-      "QALYs": dqals
-    })
+      COST: Math.round(((dcosts - cpcosts) * 1000) / 1000),
+      QALYs: Math.round((dqals - cpqals) * 1000) / 1000,
+    });
+    iCosts.push(Math.round(((dcosts - cpcosts) * 1000) / 1000));
+    iQals.push(Math.round((dqals - cpqals) * 1000) / 1000);
   }
-  
 
   return (
     <div className="trials-container">
@@ -80,9 +79,17 @@ export default function Simulation({ iterationNum, digitalProbability }) {
             return <div>{qal}</div>;
           })}
         </div>
-        <div className="Scatter-Plot">
-          {ScatterPlot(data)}
+        <div className="costs">
+          {iCosts.map((qal) => {
+            return <div>{qal}</div>;
+          })}
         </div>
+        <div className="costs">
+          {iQals.map((qal) => {
+            return <div>{qal}</div>;
+          })}
+        </div>
+        <div className="Scatter-Plot">{ScatterPlot(data)}</div>
       </div>
     </div>
   );

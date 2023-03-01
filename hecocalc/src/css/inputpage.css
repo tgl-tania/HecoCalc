@@ -38,6 +38,7 @@
 
 .rows::-webkit-scrollbar {
   height: 5px;
+  /* transition: 100ms ease-in-out; */
 }
 
 .rows::-webkit-scrollbar-track {
