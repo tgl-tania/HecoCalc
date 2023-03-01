@@ -15,7 +15,12 @@ import {
 } from "recharts";
 import data from '../json/scatter-data.json';
 
-export default function ScatterPlot() {
+export default function ScatterPlot(data) {
+  var dataXMin = Math.min(data.QALYs);
+  var dataXMax = Math.max(data.QALYs);
+  var dataYMin = Math.min(data.COST);
+  var dataYMax = Math.max(data.COST);
+  
 
   return (
     <div style={{textAlign:'center',  minWidth: "400px"}}>
@@ -34,13 +39,13 @@ export default function ScatterPlot() {
       tick={{fontSize:"12"}}
       tickLine={true}
       tickCount={11}
-      domain={([dataMin, dataMax]) => { const absMax = Math.max(Math.ceil(dataMin), Math.round(dataMax)); return [-absMax, absMax]; }}>
+      domain={[dataXMin,dataXMax]}>
          <Label value="Incremental QALYs" position='insideBottom' fontWeight={"bold"} fill="#000000" offset={-10}/>
         </XAxis>
         <YAxis axisLine={true} type="number" dataKey="COST" 
       //  ticks={[-5000,-4000,-3000,-2000,-1000,1000,2000,3000,4000,5000]} 
        tick={{fontSize:"12"}} tickLine={true}
-       domain={([dataMin, dataMax]) => { const absMax = Math.max(Math.ceil(dataMin/100)*100-200, Math.ceil(dataMax/100)*100+200); return [-absMax, absMax]; }}
+       domain={[dataYMin,dataYMax]}
        allowDecimals={false}
        tickCount={11}
        >
