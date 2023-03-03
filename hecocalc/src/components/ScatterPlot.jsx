@@ -48,7 +48,7 @@ export default function ScatterPlot(data) {
               position="insideBottom"
               fontWeight={"bold"}
               fill="#000000"
-              offset={-10}
+              offset={-40}
             />
           </XAxis>
           <YAxis
@@ -74,7 +74,7 @@ export default function ScatterPlot(data) {
           {/* ZAxis range sets the size of the scatter*/}
           <ZAxis range={[20]} />
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-          <Legend layout="centric" verticalAlign="middle" align="right" />
+          <Legend verticalAlign="bottom" align="center"/>
           <Scatter
             name="PSA Scatter"
             data={data}

@@ -20,7 +20,7 @@ var palette = ["#2F75B5", "#EC7D31"];
 
 class Tornado extends React.Component {
   //Defines the min and max of the axis
-  visualRange = [0, 3500];
+  // visualRange = [0, 3500];
 
   render() {
     return (
@@ -33,7 +33,7 @@ class Tornado extends React.Component {
           rotated={true}
           palette={palette}
         >
-          <AdaptiveLayout width={400} height={400} />
+          <AdaptiveLayout width={300} height={300} />
           <Size height={700} />
           {/* The tornado diagram is created as a bar range chart, 
           the following takes the defined ranges from the json file */}
@@ -54,7 +54,7 @@ class Tornado extends React.Component {
 
           <ValueAxis
             //Sets the axis range from 0,3500 (visualRange)
-            defaultVisualRange={this.visualRange}
+            // defaultVisualRange={this.visualRange}
             tickInterval={500}
           >
             <AxisTitle text={"ICER"} width={100} />

@@ -82,7 +82,7 @@ export default function InputScreen({
               value={serviceWithDigital}
               onChange={(e) => setServiceWithDigital(e.target.value)}
             />
-            %
+            
           </div>
         </div>
       </div>
