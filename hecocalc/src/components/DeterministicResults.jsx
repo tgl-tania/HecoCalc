@@ -23,49 +23,50 @@ const Template = ({ box1, box2, box3, box4, box5, box6, box7 }) => {
       <h1>DETERMINISTIC RESULTS</h1>
       <div className="output-container">
         <div className="output-group">
-          <p>TOTAL COST</p>
+          <p>TOTAL COST</p>          
+        </div>
+        <div className="output-group">
           <input type="number" value={box1} disabled />
+          <p>GBP</p>          
         </div>
-        <div className="output-group">
-          <p>GBP</p>
+        <div className="output-group">  
           <input type="number" value={box2} disabled />
+          <p>GBP</p>        
         </div>
         <div className="output-group">
-          <p>GBP</p>
-          <input type="number" value={box3} disabled />
+          <input type="number" value={box3} disabled />  
+          <p>GBP</p>  
         </div>
         <div className="output-group">
-          <p>GBP</p>
+          <p>QALY'S</p>          
         </div>
         <div className="output-group">
-          <p>QALY'S</p>
           <input type="number" value={box4} disabled />
+          <p>   </p>          
+          
         </div>
         <div className="output-group">
-          <p> </p>
-          <input type="number" value={box5} disabled />
+          <input type="number" value={box5} disabled />  
+          <p>   </p>     
         </div>
         <div className="output-group">
-          <p> </p>
           <input type="number" value={box6} disabled />
+          <p>   </p>  
         </div>
         <div className="output-group">
-          <p> </p>
-        </div>
-        <div className="output-group">
-          <h5>(quality-adjusted life years)"</h5>
-          <p> </p>
+          <h5>(quality-adjusted life years)"</h5>          
         </div>
         <div className="output-group">
           <p> </p>
           <p> </p>
         </div>
-        <div className="output-group">
-          <p> </p>
-          <input type="number" value={box7} disabled />
+        <div className="output-group">  
+          <p>   </p>        
+          <p>   </p>
         </div>
         <div className="output-group">
-          <p> </p>
+          <input type="number" value={box7} disabled />  
+          <p>   </p>          
         </div>
       </div>
     </div>

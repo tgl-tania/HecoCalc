@@ -8,16 +8,39 @@ import RunSimulations from "../components/RunSimulations";
 import Navbar from "../components/Navbar";
 import "../css/dashboard.css";
 
-function GraphsDashboard() {
+function GraphsDashboard({
+  iterationNum,
+  setIterationNum,
+  digitalProbability,
+  setDigitalProbability,
+  appropriateTreatment,
+  setAppropriateTreatment,
+  hospitalWithDigital,
+  setHospitalWithDigital,
+  serviceWithDigital,
+  setServiceWithDigital,
+}) {
   return (
     <>
       <Navbar />
       <div>
-        <RunSimulations />
+        <RunSimulations
+          iterationNum={iterationNum}
+          setIterationNum={setIterationNum}
+        />
       </div>
       <div className="DashBoard">
         <div className="InputScreen">
-          <InputScreen />
+          <InputScreen
+            digitalProbability={digitalProbability}
+            setDigitalProbability={setDigitalProbability}
+            appropriateTreatment={appropriateTreatment}
+            setAppropriateTreatment={setAppropriateTreatment}
+            hospitalWithDigital={hospitalWithDigital}
+            setHospitalWithDigital={setHospitalWithDigital}
+            serviceWithDigital={serviceWithDigital}
+            setServiceWithDigital={setServiceWithDigital}
+          />
         </div>
         <div className="DeterministicResults">
           <div className="Results">
@@ -30,13 +53,18 @@ function GraphsDashboard() {
           </div>
         </div>
       </div>
-      <div className="LineAndScatter">
-        <ScatterPlot />
-        <Linechart />
+      <div className="GridLineAndScatter">
+        <div className="grid-itemscatter">
+          <Tornado />
+        </div>
+        <div className="grid-itemline">
+          <Linechart />
+        </div>
+        {/* <h1 className="heading">One-way sensitivity analysis</h1> */}
+        <hr className="horizontalLine" />
       </div>
-      <div className="TornadoDiagram">
-        <Tornado />
-      </div>
+
+      
     </>
   );
 }

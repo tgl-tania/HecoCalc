@@ -14,10 +14,10 @@ body {
 }
 
 .leftSide {
-  width: 50%;
+  width: 40%;
   flex-direction: column;
   display: flex;
-  background-color: rgb(69, 69, 69);
+  background-color: #FF931E;
 }
 
 .rightSide {

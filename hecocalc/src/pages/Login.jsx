@@ -5,63 +5,75 @@ import "../css/login.css";
 import UserPool from "../UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import AWS from "aws-sdk";
+import { useOutletContext } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const [error,setError] = useState(false);
+  const authenticate = useOutletContext().authenticate;
+  const getRepo = useOutletContext().getRepo;
+  var repositories = getRepo();
+  const getRepositories = useOutletContext().getRepositories;
+  const getSession = useOutletContext().getSession;
   const navigateToHome = () => {
-    navigate("/");
+    navigate("/dashboard");
   };
+
+  let style;
+  if(!error){
+     style = {
+        "& label.Mui-focused": {
+          borderBottomcolor: '#FF931E',
+          color:'#FF931E',
+        },
+        "& .MuiInput-underline:after": {
+          borderBottomColor: '#FF931E'
+        },
+        
+      
+    }
+  }
+  else{
+     style = {
+      "& .MuiFormLabel-root":{
+        color:'#E50000'
+
+      },
+      "& label.MuiFormLabel-root.Mui-focused":{
+        color:'#FF931E'
+
+      },
+      
+      "& .MuiInput-underline:after": {
+        borderBottomColor: '#FF931E',
+        color:'black'
+      },
+      "& .MuiInput-underline:before": {
+        borderBottomColor: '#E50000',
+        color:'black'
+      },
+      
+    
+  }
+  }
+  
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    const user = new CognitoUser({
-      Username: email,
-      Pool: UserPool,
+    authenticate(email,password)
+    .then(data => {
+      console.log(data);
+      getRepositories().then(x => {
+        navigate('/loginsettings');
     });
+    })
+    .catch(err => {
+      console.log(err);
+    })
 
-    const authDetails = new AuthenticationDetails({
-      Username: email,
-      Password: password,
-    });
-
-    user.authenticateUser(authDetails, {
-      onSuccess: function (result) {
-        console.log("SUCCESS");
-        var accessToken = result.getAccessToken().getJwtToken();
-
-        var idToken = result.idToken.jwtToken;
-
-        AWS.config.region = "eu-west-2";
-        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: "eu-west-2:fca66400-f2b5-4b3b-bee7-2d01ea34e734",
-          Logins: {
-            "cognito-idp.eu-west-2.amazonaws.com/eu-west-2_D4H1dwVyg": idToken,
-          },
-        });
-
-        AWS.config.credentials.get(function (err) {
-          if (err) return console.error(err);
-          else console.log(AWS.config.credentials);
-
-          var s3 = new AWS.S3({
-            apiVersion: "2006-03-01",
-            params: { Bucket: "arn:aws:s3:::alancompany" },
-          });
-
-          s3.listObjects({ Delimiter: "/" }, function (err, data) {
-            console.log(err, data);
-          });
-        });
-      },
-
-      onFailure: (err) => {
-        console.error("onFailure:", err);
-      },
-    });
+    
   };
 
   return (
@@ -86,6 +98,7 @@ function Login() {
               variant="standard"
               size="50px"
               value={email}
+              sx={style}
               onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
@@ -93,6 +106,7 @@ function Login() {
               label="Enter Password..."
               variant="standard"
               value={password}
+              sx={style}
               onChange={(event) => setPassword(event.target.value)}
             />
             <button className="loginButton" type="submit" onClick={onSubmit}>
